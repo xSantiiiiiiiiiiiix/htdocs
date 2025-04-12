@@ -1,0 +1,414 @@
+/* Añadir al principio del archivo */
+* {
+    box-sizing: border-box;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    header {
+        padding: 1.5rem 1rem;
+    }
+
+        header h1 {
+            font-size: 1.8rem;
+        }
+
+        header p {
+            font-size: 1rem;
+        }
+
+    nav {
+        position: static; 
+        display: flex;
+        flex-wrap: wrap; 
+        padding: 0.5rem;
+    }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+            nav ul li {
+                flex: 1 1 auto; 
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 0.5rem;
+                text-align: center;
+                display: block;
+            }
+
+    section {
+        padding: 1.5rem 1rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+
+    .whatsapp-float {
+        padding: 12px;
+        font-size: 20px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+/* Media query para pantallas muy pequeñas (ej. 320px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    section {
+        padding: 1rem 0.5rem;
+    }
+
+    .whatsapp-float {
+        padding: 10px;
+        font-size: 18px;
+    }
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+header {
+    background-color: #1f2937;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+}
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1.2rem;
+    }
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #374151;
+    padding: 1rem;
+}
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        padding: 0;
+        margin: 0;
+    }
+
+        nav ul li {
+            display: inline;
+        }
+
+            nav ul li a {
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+                padding: 0.75rem 1rem;
+                transition: background 0.3s ease;
+                border-radius: 0.5rem;
+            }
+
+                nav ul li a:hover {
+                    background: #3b82f6;
+                }
+
+nav.floating {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+section {
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+    flex: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.4;
+    height: auto;
+    color: #374151;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+a.button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+}
+
+    a.button:hover {
+        background-color: #2563eb;
+    }
+
+footer {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+#catalogo {
+    background-color: #f0f4f8;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#catalogo h2 {
+    font-size: 2rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+/* Separador visual entre secciones */
+.separator {
+    height: 2px;
+    background: linear-gradient(to right, #3b82f6, #1f2937);
+    margin: 2rem 0;
+}
+
+/* Estilos generales */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animación para la aparición de texto */
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilos para las secciones */
+section {
+    padding: 4rem 2rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+section:nth-child(odd) {
+    background-color: #f9fafb;
+}
+
+section:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Estilo para enlaces activos */
+.active {
+    color: #3b82f6;
+}
+
+/* Separador visual entre secciones */
+.separator {
+    border-bottom: 1px solid black;
+}
+
+/* Estilo para el formulario */
+form {
+    background-color: #f9fafb;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+form input[type="text"],
+form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid #3b82f6;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    color: #374151;
+    background-color: #f9fafb;
+}
+
+form input[type="text"]:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+form input[type="submit"] {
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+/* Estilo para la sección de contacto */
+#contacto {
+    background-color: #f3f4f6;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+#contacto h2 {
+    font-size: 2rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+#contacto p {
+    font-size: 1rem;
+    color: #374151;
+    margin: 0.5rem 0;
+}
+
+#contacto a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#contacto a:hover {
+    color: #2563eb;
+}
+
+/* Estilo para la sección "¿Quiénes somos?" */
+#sobre-nosotros {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+#sobre-nosotros h2 {
+    font-size: 2rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+#sobre-nosotros p {
+    font-size: 1rem;
+    color: #374151;
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+/* Ajuste para las imágenes en la galería */
+#galeria .card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+}
