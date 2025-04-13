@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="img/amedida3d_ico.ico" />
     <title>AMedida3D</title>
-</head> 
+</head>
 <body>
     <header>
         <a href="#" class="logo">
@@ -102,7 +102,7 @@
         <p>&copy; 2025 AMedida3D - Todos los derechos reservados.</p>
     </footer>
 
-    <a href="https://wa.me/5493434610995" class="whatsapp-float" target="_blank">&#128172;</a>
+    <a href="https://wa.me/5493434150181" class="whatsapp-float" target="_blank">&#128172;</a>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -141,6 +141,30 @@
                     nav.classList.remove('floating'); 
                 }
                 lastScrollY = window.scrollY;
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav ul li a');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.6
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
             });
         });
     </script>

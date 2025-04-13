@@ -149,6 +149,18 @@ nav {
                     background: #3b82f6;
                 }
 
+            nav ul li a.active {
+                color: white;
+                background: #3b82f6;
+                text-decoration: none;
+            }
+
+            nav ul li a.active:hover {
+                background: #2563eb;
+                color: white;
+                text-decoration: none;
+            }
+
 nav.floating {
     position: fixed;
     top: 0;
@@ -411,4 +423,8 @@ form input[type="submit"]:hover {
     max-height: 200px;
     object-fit: contain;
     border-radius: 8px;
+}
+
+:target {
+    scroll-margin-top: 80px; 
 }
