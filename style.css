@@ -91,6 +91,35 @@ section:nth-child(even) {
     background-color: #ffffff;
 }
 
+.file-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .file-input {
+    display: none;
+  }
+
+  .file-label {
+    background-color: #2563eb; /* Azul tipo Tailwind */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+
+  .file-label:hover {
+    background-color: #1e40af;
+  }
+
+  .file-name {
+    font-size: 14px;
+    color: #333;
+  }
+
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -120,43 +149,47 @@ footer {
     padding: 1rem;
 }
 
-/* Media Queries */
+/* Mejorar la visualización de la barra de navegación en dispositivos móviles */
 @media (max-width: 768px) {
-    body {
-        font-size: 14px;
+    .logo   {
+        display: block;
+        margin: 0 auto;
+        width: 50%;
     }
 
-    header {
-        padding: 1.5rem 1rem;
-    }
-
-    header h1 {
-        font-size: 1.8rem;
+    section:first-of-type {
+        margin-top: 0rem;
     }
 
     nav {
-        flex-wrap: wrap;
-        padding: 1rem 0.5rem;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        background-color: #374151;
     }
 
     nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.5rem;
+        flex-direction: column;
+        gap: 0.75rem;
         width: 100%;
-    }
-
-    nav ul li {
-        flex: 1 1 auto;
         text-align: center;
     }
 
-    section {
-        padding: 1.5rem 1rem;
+    nav ul li {
+        width: 100%;
     }
 
-    .grid {
-        grid-template-columns: 1fr;
+    nav ul li a {
+        display: block;
+        padding: 1rem;
+        background-color: #3b82f6;
+        color: white;
+        border-radius: 0.5rem;
+        transition: background 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        background-color: #2563eb;
     }
 }
 

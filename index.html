@@ -48,6 +48,17 @@
             <input type="text" id="nombre" name="nombre" required><br><br>
             <label for="descripcion">Descripción del modelo:</label><br>
             <textarea id="descripcion" name="descripcion" rows="4" required></textarea><br><br>
+            
+            <!--
+            <div class="file-upload">
+                <label for="archivo" class="file-label">Subir archivo</label>
+                <input type="file" id="archivo" class="file-input" accept=".stl,.jpg,.jpeg,.png,.pdf">
+                <span class="file-name" id="file-name">Ningún archivo seleccionado</span>
+              </div>
+            <label for="medidas">Medidas aproximadas (largo x ancho x alto en cm):</label>
+            <input type="text" name="medidas" id="medidas">
+            -->
+
             <input type="submit" value="Enviar Pedido">
         </form>
     </section>
@@ -157,6 +168,14 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
+
+            const input = document.getElementById('archivo');
+            const fileName = document.getElementById('file-name');
+
+            input.addEventListener('change', () => {
+            fileName.textContent = input.files.length > 0 ? input.files[0].name : 'Ningún archivo seleccionado';
+            });
+            
         });
     </script>
 </body>
