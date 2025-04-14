@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+
+body.preloader-active {
+    overflow: hidden;
+  }
+  
+  
+
 html, body {
     height: auto;
     min-height: 100%;
@@ -646,3 +653,59 @@ section {
     background-color: #2563eb;
 } */
 
+/* PRELOADER TIPO CORTINA */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1f2937;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .preloader-logo {
+    position: relative;
+    z-index: 2;
+    animation: logoFade 1s ease-in-out forwards;
+    animation-delay: 0.5s;
+  }
+  
+ 
+  
+  /* Cortinas */
+  .panel {
+    position: absolute;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background-color: #1f2937;
+    z-index: 3;
+    transition: transform 1.2s ease-in-out;
+  }
+  .preloader-logo img {
+    width: 120px;
+    height: auto;
+    opacity: 0;
+  }
+  
+  .panel.left {
+    left: 0;
+    transform: translateX(0);
+  }
+  
+  .panel.right {
+    right: 0;
+    transform: translateX(0);
+  }
+  
+  @keyframes logoFade {
+    to {
+      opacity: 1;
+    }
+  }
+  

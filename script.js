@@ -1,3 +1,32 @@
+window.addEventListener("load", () => {
+    const logo = document.querySelector(".preloader-logo img");
+  
+    // Mostrar logo más rápido
+    setTimeout(() => {
+      logo.style.opacity = 1;
+    }, 200); // antes: 300ms
+  
+    // Abrir paneles antes
+    setTimeout(() => {
+      document.querySelector(".panel.left").style.transform = "translateX(-100%)";
+      document.querySelector(".panel.right").style.transform = "translateX(100%)";
+    }, 600); // antes: 1000ms
+  
+    // Ocultar preloader antes
+    setTimeout(() => {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = 0;
+      preloader.style.transition = "opacity 0.3s ease";
+  
+      // Habilitar scroll
+      document.body.classList.remove("preloader-active");
+  
+      setTimeout(() => {
+        preloader.style.display = "none";
+      }, 300);
+    }, 1200); // antes: 2000ms
+  });
+
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
 
