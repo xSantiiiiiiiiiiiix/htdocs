@@ -27,6 +27,8 @@ window.addEventListener("load", () => {
     }, 1200); // antes: 2000ms
   });
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
 
@@ -138,3 +140,4 @@ modal.onclick = (e) => {
     if (e.target === modal) modal.style.display = "none";
 }
 });
+
