@@ -417,5 +417,7 @@ section {
     flex: 1;
     border-bottom: 1px solid #e5e7eb;
     padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
