@@ -131,13 +131,13 @@ footer {
 
     nav {
         flex-wrap: wrap;
-        padding: 0.5rem;
+        padding: 1rem 0.5rem;
     }
 
     nav ul {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.5rem;
+        gap: 1.5rem;
         width: 100%;
     }
 
