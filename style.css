@@ -393,6 +393,9 @@ form input[type="submit"]:hover {
     line-height: 1.6;
 }
 
+#galeria{
+    padding-bottom: 1.5rem;
+}
 /* Ajuste para las imágenes en la galería */
 #galeria .card img {
     width: 100%;
