@@ -410,7 +410,7 @@ form input[type="submit"]:hover {
 }
 
 :target {
-    scroll-margin-top: 80px; 
+    scroll-margin-top: 100px; 
 }
 
 section {
