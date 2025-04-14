@@ -1,9 +1,121 @@
-/* Añadir al principio del archivo */
 * {
     box-sizing: border-box;
 }
 
-/* Media query para pantallas pequeñas */
+html, body {
+    height: auto;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+}
+
+header {
+    background-color: #1f2937;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #374151;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem 1rem;
+    transition: background 0.3s ease;
+    border-radius: 0.5rem;
+}
+
+nav ul li a:hover {
+    background: #3b82f6;
+}
+
+nav ul li a.active {
+    background: #3b82f6;
+}
+
+/* Estilo para resaltar la sección activa en la navegación */
+nav ul li a.active {
+    background: #3b82f6;
+    color: white;
+    font-weight: bold;
+}
+
+section {
+    padding: 4rem 2rem;
+    max-width: 900px;
+    margin: auto;
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+section:nth-child(odd) {
+    background-color: #f9fafb;
+}
+
+section:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.4;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+footer {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
     body {
         font-size: 14px;
@@ -13,39 +125,26 @@
         padding: 1.5rem 1rem;
     }
 
-        header h1 {
-            font-size: 1.8rem;
-        }
-
-        header p {
-            font-size: 1rem;
-        }
+    header h1 {
+        font-size: 1.8rem;
+    }
 
     nav {
-        position: static; 
-        display: flex;
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
         padding: 0.5rem;
     }
 
-        nav ul {
-            display: flex;
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 0.5rem;
-            width: 100%;
-        }
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+    }
 
-            nav ul li {
-                flex: 1 1 auto; 
-                text-align: center;
-            }
-
-            nav ul li a {
-                padding: 0.5rem;
-                text-align: center;
-                display: block;
-            }
+    nav ul li {
+        flex: 1 1 auto;
+        text-align: center;
+    }
 
     section {
         padding: 1.5rem 1rem;
@@ -54,20 +153,8 @@
     .grid {
         grid-template-columns: 1fr;
     }
-
-    .card {
-        padding: 1rem;
-    }
-
-    .whatsapp-float {
-        padding: 12px;
-        font-size: 20px;
-        bottom: 15px;
-        right: 15px;
-    }
 }
 
-/* Media query para pantallas muy pequeñas (ej. 320px) */
 @media (max-width: 480px) {
     body {
         font-size: 13px;
@@ -80,86 +167,13 @@
     section {
         padding: 1rem 0.5rem;
     }
-
-    .whatsapp-float {
-        padding: 10px;
-        font-size: 18px;
-    }
 }
 
-html, body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+nav ul li a.active:hover {
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
 }
-
-body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-    color: #333;
-}
-
-header {
-    background-color: #1f2937;
-    color: #fff;
-    padding: 2rem;
-    text-align: center;
-}
-
-    header h1 {
-        margin: 0;
-        font-size: 2.5rem;
-    }
-
-    header p {
-        font-size: 1.2rem;
-    }
-
-nav {
-    display: flex;
-    justify-content: center;
-    background: #374151;
-    padding: 1rem;
-}
-
-    nav ul {
-        list-style: none;
-        display: flex;
-        gap: 1.5rem;
-        padding: 0;
-        margin: 0;
-    }
-
-        nav ul li {
-            display: inline;
-        }
-
-            nav ul li a {
-                text-decoration: none;
-                color: white;
-                font-weight: bold;
-                padding: 0.75rem 1rem;
-                transition: background 0.3s ease;
-                border-radius: 0.5rem;
-            }
-
-                nav ul li a:hover {
-                    background: #3b82f6;
-                }
-
-            nav ul li a.active {
-                color: white;
-                background: #3b82f6;
-                text-decoration: none;
-            }
-
-            nav ul li a.active:hover {
-                background: #2563eb;
-                color: white;
-                text-decoration: none;
-            }
 
 nav.floating {
     position: fixed;
@@ -180,37 +194,6 @@ nav.floating {
     }
 }
 
-section {
-    padding: 2rem;
-    max-width: 900px;
-    margin: auto;
-    flex: 1;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-.card {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 1rem;
-    text-align: left;
-    font-size: 1rem;
-    line-height: 1.4;
-    height: auto;
-    color: #374151;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
 a.button {
     display: inline-block;
     margin-top: 1rem;
@@ -221,15 +204,8 @@ a.button {
     border-radius: 0.5rem;
 }
 
-    a.button:hover {
-        background-color: #2563eb;
-    }
-
-footer {
-    background-color: #1f2937;
-    color: white;
-    text-align: center;
-    padding: 1rem;
+a.button:hover {
+    background-color: #2563eb;
 }
 
 .whatsapp-float {
@@ -266,11 +242,6 @@ footer {
     margin: 2rem 0;
 }
 
-/* Estilos generales */
-html {
-    scroll-behavior: smooth;
-}
-
 /* Animación para la aparición de texto */
 .hidden {
     opacity: 0;
@@ -281,20 +252,6 @@ html {
 .visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Estilos para las secciones */
-section {
-    padding: 4rem 2rem;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-section:nth-child(odd) {
-    background-color: #f9fafb;
-}
-
-section:nth-child(even) {
-    background-color: #ffffff;
 }
 
 /* Estilo para enlaces activos */
@@ -428,3 +385,4 @@ form input[type="submit"]:hover {
 :target {
     scroll-margin-top: 80px; 
 }
+
