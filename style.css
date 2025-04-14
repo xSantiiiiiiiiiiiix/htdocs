@@ -78,6 +78,11 @@ section {
     border-bottom: 1px solid #e5e7eb;
 }
 
+/* Agregar espacio en blanco entre la barra de navegación y la primera sección */
+section:first-of-type {
+    margin-top: 2rem;
+}
+
 section:nth-child(odd) {
     background-color: #f9fafb;
 }
