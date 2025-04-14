@@ -1,0 +1,25 @@
+    <!-- 
+    <div class="separator"></div>
+    
+    <section id="productos">
+        <h2>Productos</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="img/llavero.jpeg" alt="Llaveros personalizados">
+                <p>Llaveros personalizados</p>
+                <a href="https://wa.me/5493434150181?text=Hola,%20quiero%20consultar%20sobre%20los%20Llaveros%20personalizados." class="button">Consultar</a>
+            </div>
+            <div class="card">
+                <img src="img/16_Soporte-de-Celular-Plastico_04.jpg" alt="Soportes de celular">
+                <p>Soportes de celular</p>
+                <a href="https://wa.me/5493434150181?text=Hola,%20quiero%20consultar%20sobre%20los%20Soportes%20de%20celular." class="button">Consultar</a>
+            </div>
+            <div class="card">
+                <img src="img/prototipo-ultimaker.jpeg" alt="Prototipos funcionales">
+                <p>Prototipos funcionales</p>
+                <a href="https://wa.me/5493434150181?text=Hola,%20quiero%20consultar%20sobre%20los%20Prototipos%20funcionales." class="button">Consultar</a>
+            </div>
+        </div>
+    </section> -->
+    
+    

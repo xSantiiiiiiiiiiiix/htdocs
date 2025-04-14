@@ -393,6 +393,47 @@ form input[type="submit"]:hover {
     line-height: 1.6;
 }
 
+#galeria {
+    text-align: center;
+    padding: 2rem 0;
+    max-width: 100%;
+    margin: 0;
+    background-color: #f9fafb;
+}
+
+.galeria-container {
+    display: flex;
+    justify-content: center; /* <-- esto centra horizontalmente las tarjetas */
+    flex-wrap: wrap;          /* para que se acomoden en varias filas si es necesario */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.galeria-card {
+    min-width: 250px;
+    flex-shrink: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    scroll-snap-align: start;
+}
+
+.galeria-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.galeria-card p {
+    padding: 0.5rem;
+    font-size: 0.95rem;
+    color: #374151;
+}
+
+
 #galeria{
     padding-bottom: 1.5rem;
 }
@@ -404,6 +445,89 @@ form input[type="submit"]:hover {
     object-fit: contain;
     border-radius: 8px;
 }
+
+.galeria-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.galeria-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    animation: zoom 0.6s;
+    border-radius: 10px;
+}
+
+@keyframes zoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+#modal-caption {
+    margin: auto;
+    text-align: center;
+    color: #f1f1f1;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 40px;
+    padding: 16px;
+    margin-top: -22px;
+    border: none;
+    background: transparent;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
 
 .pedidos{
     padding-top: 0;
@@ -465,4 +589,59 @@ section {
         font-size: 0.8rem;
     }
 }
+
+/* #productos {
+    padding: 2rem;
+    text-align: center;
+}
+
+#productos h2 {
+    font-size: 2rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+#productos .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+#productos .card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#productos .card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+#productos .card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #374151;
+}
+
+#productos .card .button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+#productos .card .button:hover {
+    background-color: #2563eb;
+} */
 

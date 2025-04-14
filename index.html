@@ -75,24 +75,61 @@
 
     <section id="galeria">
         <h2>Galería de Proyectos</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="img/llavero.jpeg" alt="Llaveros personalizados">
+        <div class="galeria-container">
+            <div class="galeria-card">
+                <img src="img/llavero.jpg" alt="Llaveros personalizados">
                 <p>Llaveros personalizados</p>
             </div>
-            <div class="card">
+            <div class="galeria-card">
                 <img src="img/16_Soporte-de-Celular-Plastico_04.jpg" alt="Soportes de celular">
                 <p>Soportes de celular</p>
             </div>
-            <div class="card">
+            <div class="galeria-card">
                 <img src="img/prototipo-ultimaker.jpeg" alt="Prototipos funcionales">
                 <p>Prototipos funcionales</p>
             </div>
         </div>
     </section>
+    
+    <!-- Modal para imagen grande -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div id="modal-caption"></div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+    </div>
+    
+    
+    
+
+
+    <!-- 
+    <div class="separator"></div>
+    
+    <section id="productos">
+        <h2>Productos</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="img/llavero.jpeg" alt="Llaveros personalizados">
+                <p>Llaveros personalizados</p>
+                <a href="https://wa.me/5493434150181?text=Hola,%20quiero%20consultar%20sobre%20los%20Llaveros%20personalizados." class="button">Consultar</a>
+            </div>
+            <div class="card">
+                <img src="img/16_Soporte-de-Celular-Plastico_04.jpg" alt="Soportes de celular">
+                <p>Soportes de celular</p>
+                <a href="https://wa.me/5493434150181?text=Hola,%20quiero%20consultar%20sobre%20los%20Soportes%20de%20celular." class="button">Consultar</a>
+            </div>
+            <div class="card">
+                <img src="img/prototipo-ultimaker.jpeg" alt="Prototipos funcionales">
+                <p>Prototipos funcionales</p>
+                <a href="https://wa.me/5493434150181?text=Hola,%20quiero%20consultar%20sobre%20los%20Prototipos%20funcionales." class="button">Consultar</a>
+            </div>
+        </div>
+    </section> -->
 
     <div class="separator"></div>
-
+    
     <section id="contacto">
         <h2>Contacto</h2>
         <p>Instagram: <a href="https://instagram.com/amedida.3d" target="_blank">@AMedida3D</a></p>
@@ -177,6 +214,48 @@
             });
             
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById("modal");
+        const modalImg = document.getElementById("modal-img");
+        const modalCaption = document.getElementById("modal-caption");
+        const closeBtn = document.querySelector(".close");
+        const nextBtn = document.querySelector(".next");
+        const prevBtn = document.querySelector(".prev");
+        const cards = document.querySelectorAll(".galeria-card img");
+
+        let currentIndex = 0;
+
+        function showModal(index) {
+            const img = cards[index];
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            modalCaption.textContent = img.alt;
+            currentIndex = index;
+        }
+
+        cards.forEach((img, index) => {
+            img.addEventListener("click", () => showModal(index));
+        });
+
+        closeBtn.onclick = () => modal.style.display = "none";
+
+        nextBtn.onclick = () => {
+            currentIndex = (currentIndex + 1) % cards.length;
+            showModal(currentIndex);
+        }
+
+        prevBtn.onclick = () => {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            showModal(currentIndex);
+        }
+
+        // Cerrar modal al hacer clic fuera de la imagen
+        modal.onclick = (e) => {
+            if (e.target === modal) modal.style.display = "none";
+        }
+    });
+
     </script>
 </body>
 </html>
