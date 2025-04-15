@@ -141,3 +141,35 @@ modal.onclick = (e) => {
 }
 });
 
+document.getElementById('input').addEventListener('change', () =>{
+    if(document.body.className.indexOf('dark') === -1) {
+        document.body.classList.add('dark');
+    }
+    else {
+        document.body.classList.remove('dark');
+    }
+}
+);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("input");
+    const body = document.body;
+
+    // 1. Leer estado guardado
+    const darkMode = localStorage.getItem("dark-mode");
+    if (darkMode === "enabled") {
+        body.classList.add("dark");
+        toggle.checked = true;
+    }
+
+    // 2. Función para activar/desactivar modo
+    toggle.addEventListener("change", () => {
+        if (toggle.checked) {
+            body.classList.add("dark");
+            localStorage.setItem("dark-mode", "enabled");
+        } else {
+            body.classList.remove("dark");
+            localStorage.setItem("dark-mode", "disabled");
+        }
+    });
+});
