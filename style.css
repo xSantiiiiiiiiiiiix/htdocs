@@ -798,15 +798,13 @@ section {
 }
 
 .dark nav ul li a.active {
-    background: #3b82f6;
-    color: #1b1e1f;
-    font-weight: bold;
+    background: #214ba7;
 }
 
 
 
 .dark nav ul li a:hover {
-    background: #2e21a7;
+    background: #214ba7;
 }
 
 .dark #section{
