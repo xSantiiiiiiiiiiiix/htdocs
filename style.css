@@ -20,8 +20,6 @@ footer {
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
-
-
 html, body {
     height: auto;
     min-height: 100%;
@@ -159,6 +157,12 @@ footer {
     color: white;
     text-align: center;
     padding: 1rem;
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 /* Mejorar la visualización de la barra de navegación en dispositivos móviles */
