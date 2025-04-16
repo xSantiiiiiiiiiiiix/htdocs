@@ -790,7 +790,7 @@ section {
   }
 
 .dark nav{
-    background-color: #2b2c5e;
+    background-color: #3a80c2;
 }
 
 .dark nav a{
@@ -798,7 +798,15 @@ section {
 }
 
 .dark nav ul li a.active {
-    color: black;
+    background: #3b82f6;
+    color: #1b1e1f;
+    font-weight: bold;
+}
+
+
+
+.dark nav ul li a:hover {
+    background: #2e21a7;
 }
 
 .dark #section{
