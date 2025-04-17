@@ -1,18 +1,16 @@
 window.addEventListener("load", () => {
     const logo = document.querySelector(".preloader-logo img");
   
-    // Mostrar logo más rápido
-    setTimeout(() => {
-      logo.style.opacity = 1;
-    }, 200); // antes: 300ms
+    // Mostrar logo instantáneamente
+    logo.style.opacity = 1;
   
-    // Abrir paneles antes
+    // Abrir paneles más rápido
     setTimeout(() => {
       document.querySelector(".panel.left").style.transform = "translateX(-100%)";
       document.querySelector(".panel.right").style.transform = "translateX(100%)";
-    }, 600); // antes: 1000ms
+    }, 400); // antes: 600ms
   
-    // Ocultar preloader antes
+    // Ocultar preloader más rápido
     setTimeout(() => {
       const preloader = document.getElementById("preloader");
       preloader.style.opacity = 0;
@@ -24,7 +22,7 @@ window.addEventListener("load", () => {
       setTimeout(() => {
         preloader.style.display = "none";
       }, 300);
-    }, 1200); // antes: 2000ms
+    }, 800); // antes: 1200ms
   });
 
 
