@@ -7,7 +7,6 @@ body.preloader-active {
     overflow: hidden;
   }
   
-  
 body{
     transition: background-color 0.4s ease, color 0.4s ease;
 }
@@ -137,33 +136,65 @@ section:nth-child(even) {
 }
 
 .file-upload {
+    margin-bottom: 15px;
     display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+    flex-direction: column;
+    gap: 8px;
+}
 
-  .file-input {
+.file-upload input[type="file"] {
     display: none;
-  }
+}
 
-  .file-label {
-    background-color: #2563eb; /* Azul tipo Tailwind */
+.file-label {
+    display: inline-block;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
     color: white;
-    padding: 8px 16px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-  }
+    font-size: 0.95rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+}
 
-  .file-label:hover {
-    background-color: #1e40af;
-  }
+.file-label:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
 
-  .file-name {
-    font-size: 14px;
-    color: #333;
-  }
+.file-name {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* Dark mode styles */
+.dark .file-name {
+    color: #888;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
 
 .grid {
     display: grid;
@@ -345,52 +376,51 @@ form {
     background-color: #f9fafb;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 600px;
     margin: 2rem auto;
 }
 
-form label {
+label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #374151;
-}
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
 
-form input[type="text"],
-form textarea {
+  input, textarea, select {
     width: 100%;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border: 2px solid #3b82f6;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    color: #374151;
-    background-color: #f9fafb;
-}
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+  }
 
-form input[type="text"]:focus,
-form textarea:focus {
-    outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
-}
+  input[type="file"] {
+    padding: 6px;
+  }
 
-form input[type="submit"] {
-    background-color: #3b82f6;
+  button {
+    width: 100%;
+    padding: 14px;
+    background-color: #222;
     color: white;
-    padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 4px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
+  }
 
-form input[type="submit"]:hover {
-    background-color: #2563eb;
-}
+  button:hover {
+    background-color: #444;
+  }
 
+  @media (max-width: 600px) {
+    .container {
+      margin: 20px;
+      padding: 20px;
+    }
+  }
 /* Estilo para la sección de contacto */
 #contacto {
     background-color: #f3f4f6;
@@ -586,11 +616,6 @@ form input[type="submit"]:hover {
 
 .next {
     right: 0;
-}
-
-
-.pedidos{
-    padding-top: 0;
 }
 
 :target {
@@ -839,6 +864,7 @@ section {
     background-color: #1e2122;
     color: #eee5d7;
     border-color: #383433;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dark #pedidos form{
@@ -1169,4 +1195,344 @@ input:checked + .slider:before {
 header {
     position: relative;  /* Necesario para position:absolute del botón */
     padding-top: 20px;
+}
+
+/* Estilos para el formulario de pedidos */
+.pedidos-form {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+    font-size: 0.95rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f9fafb;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background-color: white;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* Estilos para modo oscuro */
+.dark .pedidos-form {
+    background-color: #1e2122;
+}
+
+.dark .form-group label {
+    color: #e5e7eb;
+}
+
+.dark .form-group input,
+.dark .form-group textarea {
+    background-color: #2d3235;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+.dark .form-group input:focus,
+.dark .form-group textarea:focus {
+    background-color: #2d3235;
+    border-color: #3b82f6;
+}
+
+.dark .file-name {
+    color: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pedidos-form {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .file-upload {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .file-label {
+        text-align: center;
+    }
+}
+
+#pedidos {
+    background-color: #f9fafb;
+    padding: 1rem 2rem 2rem 2rem;
+    border-radius: 16px;
+    margin: 2rem auto;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+#pedidos h2 {
+    margin-bottom: 1rem;
+}
+
+.pedidos-form {
+    max-width: 100%;
+    margin: 2rem auto;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    font-family: 'Segoe UI', sans-serif;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group:nth-child(1),
+.form-group:nth-child(2),
+.form-group:nth-child(3) {
+    grid-column: span 1;
+}
+
+.form-group:nth-child(4),
+.form-group:nth-child(5),
+.form-group:nth-child(6) {
+    grid-column: span 2;
+}
+
+.form-group:last-child {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-btn {
+    max-width: 300px;
+    margin-top: 1rem;
+}
+
+/* Dark mode styles */
+.dark #pedidos {
+    background-color: #1e2122;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .pedidos-form {
+    background: transparent;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .pedidos-form {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .form-group:nth-child(1),
+    .form-group:nth-child(2),
+    .form-group:nth-child(3),
+    .form-group:nth-child(4),
+    .form-group:nth-child(5),
+    .form-group:nth-child(6) {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    #pedidos {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .pedidos-form {
+        gap: 1rem;
+    }
+}
+
+.pedido-form {
+    background-color: #1e1e1e;
+    color: #222;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pedido-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #222;
+}
+
+.pedido-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pedido-form label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: #222;
+}
+
+.pedido-form input,
+.pedido-form textarea,
+.pedido-form select {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #222;
+    margin-bottom: 12px;
+}
+
+.pedido-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.dimensiones-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.file-upload {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+}
+
+.file-label:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.file-name {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.pedido-form button {
+    width: 100%;
+    padding: 14px;
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 5px;
+}
+
+.pedido-form button:hover {
+    background-color: #0052cc;
+}
+
+/* Dark mode styles */
+.dark .pedido-form {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.dark .pedido-form h2,
+.dark .pedido-form label {
+    color: white;
+}
+
+.dark .pedido-form input,
+.dark .pedido-form textarea,
+.dark .pedido-form select {
+    background-color: #333;
+    border-color: #444;
+    color: white;
+}
+
+.dark .pedido-form input::placeholder,
+.dark .pedido-form textarea::placeholder {
+    color: #888;
+}
+
+.dark .file-name {
+    color: #888;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pedido-form {
+        padding: 20px;
+        margin: 15px;
+    }
+
+    .form-row,
+    .dimensiones-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
 }
