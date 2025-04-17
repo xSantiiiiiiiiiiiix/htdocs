@@ -1559,6 +1559,7 @@ header {
 
 /* Menú hamburguesa */
 .menu-toggle {
+    width: auto;
     display: none;
     position: fixed;
     top: 20px;
