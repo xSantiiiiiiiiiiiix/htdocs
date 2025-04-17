@@ -1556,57 +1556,41 @@ header {
     align-items: flex-start;
 }
 
-.form-group label,
-.pedido-form label {
-    margin-bottom: 4px;
-    font-weight: 500;
+.dimensiones-row div {
+    display: flex;
+    flex-direction: column;
+}
+
+.dimensiones-row label {
+    margin-bottom: 8px;
     font-size: 0.95rem;
+    white-space: nowrap;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select,
-.pedido-form input,
-.pedido-form textarea,
-.pedido-form select {
-    margin-bottom: 10px;
+.dimensiones-row input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    height: 38px;
 }
 
-.pedido-form h2 {
-    margin-bottom: 10px;
-}
-
-/* Responsive */
+/* Responsive para dimensiones */
 @media (max-width: 768px) {
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    /* Mantener dimensiones en una fila */
     .dimensiones-row {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
     }
 
     .dimensiones-row input {
         font-size: 14px;
         padding: 8px;
+        height: 36px;
     }
 
     .dimensiones-row label {
         font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .dimensiones-row {
-        gap: 5px;
-    }
-
-    .dimensiones-row input {
-        padding: 8px 4px;
+        margin-bottom: 6px;
     }
 }
 
