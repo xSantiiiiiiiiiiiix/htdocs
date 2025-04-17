@@ -16,5 +16,12 @@
         <p>Nos pondremos en contacto contigo lo antes posible para discutir los detalles.</p>
         <a href="index.html" class="volver-btn">Volver al inicio</a>
     </div>
+
+    <script>
+        // Aplicar el modo oscuro si estaba activo en la página principal
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark');
+        }
+    </script>
 </body>
 </html> 
