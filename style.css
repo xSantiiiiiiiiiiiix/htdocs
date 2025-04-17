@@ -551,34 +551,48 @@ label {
     display: none;
     position: fixed;
     z-index: 9999;
-    padding-top: 60px;
-    left: 0; top: 0;
+    padding: 20px;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     background-color: rgba(0,0,0,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
-    margin: auto;
-    display: block;
+    position: relative;
     max-width: 80%;
-    max-height: 80%;
+    max-height: 80vh;
+    object-fit: contain;
     animation: zoom 0.6s;
     border-radius: 10px;
+    display: block;
+    margin: auto;
 }
 
-@keyframes zoom {
-    from {transform: scale(0)}
-    to {transform: scale(1)}
+.modal-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
 }
 
 #modal-caption {
-    margin: auto;
-    text-align: center;
     color: #f1f1f1;
+    text-align: center;
     padding: 10px;
     font-size: 18px;
+    margin-top: 20px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
 }
 
 .close {
@@ -589,33 +603,43 @@ label {
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
+    z-index: 10001;
 }
 
 .prev, .next {
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     font-size: 40px;
-    padding: 16px;
-    margin-top: -22px;
+    background: rgba(0, 0, 0, 0.5);
     border: none;
-    background: transparent;
-    transition: 0.3s;
-    user-select: none;
-}
-
-.prev:hover, .next:hover {
-    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
+    transition: 0.3s;
+    z-index: 10000;
 }
 
 .prev {
-    left: 0;
+    left: 30px;
 }
 
 .next {
-    right: 0;
+    right: 30px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes zoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
 }
 
 :target {
@@ -1534,5 +1558,125 @@ header {
     .dimensiones-row {
         grid-template-columns: 1fr;
         gap: 10px;
+    }
+}
+
+/* Menú hamburguesa */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+/* Menú móvil */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #1f2937;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.mobile-nav.active {
+    left: 0;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.mobile-nav ul li {
+    margin-bottom: 15px;
+}
+
+.mobile-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+}
+
+.mobile-nav ul li a:hover {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Dark mode para menú móvil */
+.dark .mobile-nav {
+    background-color: #111827;
+}
+
+/* Media queries para menú responsive */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        background-color: transparent;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus {
+        background-color: transparent !important;
+        box-shadow: none;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Ajustes para el header en móvil */
+    header {
+        padding-top: 60px;
+    }
+
+    .logo {
+        margin-top: 20px;
+    }
+
+    .darkmode-toggle {
+        top: 15px;
+        right: 15px;
     }
 }

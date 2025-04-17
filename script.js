@@ -174,4 +174,45 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Manejo del input de archivo
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('archivo');
+    const fileName = document.getElementById('file-name');
+
+    if (fileInput && fileName) {
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                fileName.textContent = this.files[0].name;
+            } else {
+                fileName.textContent = 'Ningún archivo seleccionado';
+            }
+        });
+    }
+});
+
+// Menú hamburguesa
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileNav = document.querySelector('.mobile-nav');
+
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    mobileNav.classList.toggle('active');
+});
+
+// Cerrar menú al hacer clic en un enlace
+const navLinks = document.querySelectorAll('.mobile-nav a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        mobileNav.classList.remove('active');
+    });
+});
+
+// Cerrar menú al hacer clic fuera de él
+document.addEventListener('click', (e) => {
+    if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuToggle.classList.remove('active');
+        mobileNav.classList.remove('active');
+    }
+});
 
