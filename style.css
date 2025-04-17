@@ -1804,3 +1804,82 @@ header {
     resize: vertical;
     font-family: 'Segoe UI', sans-serif;
 }
+
+/* Estilos para la página de agradecimiento */
+.gracias-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d5f1f6 100%);
+}
+
+.dark .gracias-container {
+    background: linear-gradient(135deg, #1e2122 0%, #2d3235 100%);
+    color: white;
+}
+
+.logo-gracias {
+    width: 200px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.gracias-container h1 {
+    font-size: 2.5rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.dark .gracias-container h1 {
+    color: #fff;
+}
+
+.gracias-container p {
+    font-size: 1.2rem;
+    color: #4b5563;
+    margin: 0.5rem 0;
+    max-width: 600px;
+}
+
+.dark .gracias-container p {
+    color: #d1d5db;
+}
+
+.volver-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.volver-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.dark .volver-btn {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+@media (max-width: 768px) {
+    .gracias-container h1 {
+        font-size: 2rem;
+    }
+
+    .gracias-container p {
+        font-size: 1.1rem;
+    }
+
+    .logo-gracias {
+        width: 150px;
+    }
+}
