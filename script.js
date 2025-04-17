@@ -51,21 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('nav');
-    let lastScrollY = window.scrollY;
-    
-    //eliminar barra flotante en pantallas chicas
-    window.addEventListener('scroll', () => {
-        if (window.innerWidth > 768) { 
-            if (window.scrollY > lastScrollY && window.scrollY > nav.offsetHeight) {
-                nav.classList.add('floating');
-            } else {
-                nav.classList.remove('floating');
-            }
-        } else {
-            nav.classList.remove('floating'); 
+    const header = document.querySelector('header');
+
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+            nav.classList.toggle('fixed', !entry.isIntersecting);
+        },
+        {
+            threshold: 0,
+            rootMargin: `-${nav.offsetHeight}px 0px 0px 0px`
         }
-        lastScrollY = window.scrollY;
-    });
+    );
+
+    observer.observe(header);
 });
 
 document.addEventListener('DOMContentLoaded', () => {

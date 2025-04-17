@@ -86,8 +86,30 @@ nav {
     display: flex;
     justify-content: center;
     background-color: #d5f1f6;
-
     padding: 1rem;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+nav.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    animation: slideDown 0.35s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 nav ul {
@@ -635,14 +657,8 @@ label {
 }
 
 @keyframes zoom {
-    from {
-        transform: translate(-50%, -50%) scale(0.1);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
+    from {transform: scale(0)}
+    to {transform: scale(1)}
 }
 
 :target {
