@@ -44,4 +44,13 @@
         });
     </script>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const referrer = document.referrer;
+      if (!referrer.includes("index.html") && !referrer.includes("amedida3d.ddns.net")) {
+        window.location.href = "/";
+      }
+    });
+  </script>
+  
 </html> 
