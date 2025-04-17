@@ -1,16 +1,15 @@
 RewriteEngine On
 
-# Permitir acceso a recursos estáticos
+# Permitir acceso a recursos estáticos necesarios
 RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|ico|svg)$ [NC]
-
-# Permitir acceso desde el formulario a la página de gracias
-RewriteCond %{HTTP_REFERER} !^https://formsubmit\.co [NC]
 RewriteCond %{REQUEST_URI} !^/$
-# Redirigir todo lo demás a la página principal
-RewriteRule ^(.*)$ / [R=301,L]
+RewriteCond %{REQUEST_URI} !^/index\.html$
 
-# Prevenir listado de directorios
-Options -Indexes
+# Bloquear todo lo demás con error 403 (Forbidden)
+RewriteRule ^ - [F]
+
+# Redirigir /index.html a /
+RewriteRule ^index\.html$ / [R=301,L]
 
 # Forzar HTTPS
 RewriteCond %{HTTPS} off
@@ -20,14 +19,14 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-# Remover .html de las URLs
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.*)$ $1.html [L]
+# Prevenir listado de directorios
+Options -Indexes
 
-# Redirigir /index a /
-RewriteRule ^index$ / [R=301,L]
-RewriteRule ^index.html$ / [R=301,L]
+# Denegar acceso a .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
 
 # Establecer página de error 404 personalizada
 ErrorDocument 404 /404.html 
