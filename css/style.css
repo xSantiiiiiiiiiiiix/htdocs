@@ -1963,7 +1963,7 @@ header {
 fieldset {
     border: 2px solid var(--accent-color);
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
     margin: 0;
     background-color: var(--card-bg);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -1988,7 +1988,7 @@ fieldset legend {
 
 fieldset label {
     display: block;
-    margin: 15px 0 5px;
+    margin: 8px 0 4px;
     color: var(--text-color);
     font-weight: 500;
 }
@@ -2066,8 +2066,8 @@ fieldset button[type="submit"]:hover {
 
 .form-row {
     display: flex;
-    gap: 20px;
-    margin: 15px 0;
+    gap: 15px;
+    margin: 8px 0;
 }
 
 .form-row > div {
@@ -2077,7 +2077,7 @@ fieldset button[type="submit"]:hover {
 .dimensiones-row {
     display: flex;
     gap: 15px;
-    margin: 15px 0;
+    margin: 8px 0;
 }
 
 .dimensiones-row > div {
@@ -2127,4 +2127,100 @@ fieldset input[type="text"]#color:focus {
 .dark fieldset input[type="text"]#color:focus {
     border-color: #3b82f6;
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+    .pedido-form {
+        padding: 10px;
+        margin: 0 10px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 8px;
+        margin: 5px 0;
+    }
+
+    .form-row > div {
+        width: 100%;
+    }
+
+    .dimensiones-row {
+        flex-direction: row; /* Mantener horizontal en móvil */
+        gap: 8px;
+        margin: 5px 0;
+    }
+
+    fieldset {
+        padding: 15px;
+        margin: 10px 0;
+    }
+
+    fieldset legend {
+        font-size: 1.2em;
+        padding: 0 5px;
+    }
+
+    fieldset input[type="email"],
+    fieldset input[type="text"],
+    fieldset input[type="number"],
+    fieldset select,
+    fieldset textarea {
+        padding: 8px;
+        font-size: 16px; /* Previene el zoom en iOS */
+    }
+
+    .file-upload {
+        margin: 15px 0;
+    }
+
+    .file-label {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .file-name {
+        font-size: 12px;
+    }
+
+    fieldset button[type="submit"] {
+        padding: 10px;
+        font-size: 16px;
+        margin-top: 15px;
+    }
+}
+
+/* Ajustes específicos para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .pedido-form {
+        padding: 8px;
+    }
+
+    fieldset {
+        padding: 12px;
+    }
+
+    fieldset legend {
+        font-size: 1.1em;
+    }
+
+    .dimensiones-row label {
+        font-size: 14px;
+    }
+
+    fieldset input[type="number"] {
+        width: 100%;
+    }
 }
