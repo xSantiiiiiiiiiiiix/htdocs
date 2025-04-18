@@ -10,6 +10,7 @@
     <title>AMedida3D</title>
 
     <meta name="author" content="AMedida3D">
+
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://amedida3d.ddns.net">
     <meta property="og:type" content="website">
@@ -84,6 +85,7 @@
     </nav>
 
     <section id="catalogo">
+
         <h2>¿Qué hacemos?</h2>
         <div class="grid">
             <div class="card">🔑 Llaveros personalizados</div>
@@ -96,17 +98,18 @@
             <div class="card">📦 Envíos a todo el país</div>
         </div>
 
-       
     </section>
 
     <div class="separator"></div>
 
     <section class="pedido-form" id="pedidos">
-        <h2>Pedidos Personalizados</h2>
+
         <form method="POST" action="https://formsubmit.co/amedida3d.ar@gmail.com" enctype="multipart/form-data">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_next" value="https://amedida3d.ddns.net/gracias">
-      
+            <fieldset>
+                <legend>Pedidos Personalizados</legend>
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://amedida3d.ddns.net/gracias">
+            
             <label for="email">Correo electrónico</label>
             <input type="email" id="email" name="Correo" required>      
 
@@ -124,8 +127,8 @@
                     </select>
                 </div>
                 <div>
-                    <label for="color">Color</label>
-                    <input type="text" id="color" name="color"> 
+                    <label for="color">Color </label>
+                    <input type="text" id="color" name="color" required> 
                 </div>
             </div>
 
@@ -153,6 +156,7 @@
             </div>
 
             <button type="submit"><span>Enviar pedido</span></button>
+            </fieldset>
         </form>
     </section>
 
@@ -189,7 +193,6 @@
         </div>
     </section>
     
-    <!-- Modal para imagen grande -->
     <div id="modal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="modal-img">
