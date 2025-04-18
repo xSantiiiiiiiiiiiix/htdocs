@@ -140,13 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeSwitch = document.getElementById("theme-switch");
     const body = document.body;
 
-    // 1. Leer estado guardado
     const darkMode = localStorage.getItem("dark-mode");
     if (darkMode === "enabled") {
         body.classList.add("dark");
     }
 
-    // 2. Función para activar/desactivar modo
     themeSwitch.addEventListener("click", () => {
         body.classList.toggle("dark");
         localStorage.setItem("dark-mode", body.classList.contains("dark") ? "enabled" : "disabled");
