@@ -1,0 +1,147 @@
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #d5f1f6;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+nav.fixed, nav.floating {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    animation: slideDown 0.35s ease forwards;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #1e2a3a;
+    font-weight: bold;
+    padding: 0.75rem 1rem;
+    transition: background 0.3s ease;
+    border-radius: 0.5rem;
+}
+
+nav ul li a:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+nav ul li a.active {
+    background: #3b82f6;
+    color: white;
+    font-weight: bold;
+}
+
+nav ul li a.active:hover {
+    background: #2563eb;
+    color: white;
+}
+
+/* Dark mode styles */
+.dark nav {
+    background-color: #3a80c2;
+}
+
+.dark nav a {
+    color: white;
+}
+
+.dark nav ul li a.active {
+    background: #214ba7;
+}
+
+.dark nav ul li a:hover {
+    background: #214ba7;
+}
+
+/* Mobile navigation */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #d5f1f6;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.mobile-nav.active {
+    left: 0;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 60px;
+}
+
+.mobile-nav ul li {
+    margin-bottom: 15px;
+}
+
+.mobile-nav ul li a {
+    color: #1e2a3a;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-nav ul li a:hover {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Dark mode for mobile nav */
+.dark .mobile-nav {
+    background-color: #3a80c2;
+}
+
+.dark .mobile-nav ul li a {
+    color: white;
+}
+
+.dark .mobile-nav ul li a:hover {
+    background-color: #214ba7;
+}

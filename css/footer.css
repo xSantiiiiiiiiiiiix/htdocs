@@ -1,0 +1,17 @@
+footer {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Dark mode styles */
+.dark footer {
+    background-color: #1f2937;
+}

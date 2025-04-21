@@ -1,0 +1,54 @@
+.dark {
+    background-color: #1b1e1f;
+}
+
+.dark body {
+    background-color: #1b1e1f;
+    color: #f8f9fa;
+}
+
+#theme-switch {
+    height: 60px;
+    width: 60px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+#theme-switch:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+#theme-switch svg {
+    fill: var(--primary-color);
+    width: 32px;
+    height: 32px;
+}
+
+#theme-switch svg:last-child {
+    display: none;
+}
+
+.dark #theme-switch svg:first-child {
+    display: none;
+}
+
+.dark #theme-switch svg:last-child {
+    display: block;
+}
+
+.preloader-active #theme-switch {
+    display: none;
+}

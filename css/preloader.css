@@ -1,0 +1,145 @@
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, 
+        #4db7c7 0%, 
+        #45aac2 10%,
+        #3c96cc 20%, 
+        #358bc8 30%,
+        #2878cb 40%, 
+        #216fc9 50%,
+        #1965c8 60%,
+        #165ec9 70%,
+        #1965c8 80%,
+        #2878cb 90%,
+        #4db7c7 100%
+    );
+    background-size: 400% 400%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    animation: gradientBG 6s ease infinite;
+}
+
+.dark #preloader {
+    background: linear-gradient(135deg, 
+        #344c8c 0%,
+        #2f4578 10%,
+        #26344a 20%,
+        #1f2f45 30%,
+        #142a73 40%,
+        #0c2569 50%,
+        #081069 60%,
+        #060d5f 70%,
+        #081069 80%,
+        #142a73 90%,
+        #344c8c 100%
+    );
+    background-size: 400% 400%;
+}
+
+/* Cortinas */
+.panel {
+    position: absolute;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background: inherit;
+    z-index: 3;
+    transition: transform 0.8s ease-in-out;
+}
+
+.dark .panel {
+    background: inherit;
+}
+
+.preloader-logo {
+    position: relative;
+    z-index: 2;
+}
+
+.preloader-logo img {
+    width: 150px;
+    height: auto;
+    opacity: 0;
+}
+
+.panel.left {
+    left: 0;
+    transform: translateX(0);
+}
+
+.panel.right {
+    right: 0;
+    transform: translateX(0);
+}
+
+/* Gracias page styles */
+.gracias-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d5f1f6 100%);
+}
+
+.dark .gracias-container {
+    background: linear-gradient(135deg, #1e2122 0%, #2d3235 100%);
+    color: white;
+}
+
+.logo-gracias {
+    width: 200px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.gracias-container h1 {
+    font-size: 2.5rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.dark .gracias-container h1 {
+    color: #fff;
+}
+
+.gracias-container p {
+    font-size: 1.2rem;
+    color: #4b5563;
+    margin: 0.5rem 0;
+    max-width: 600px;
+}
+
+.dark .gracias-container p {
+    color: #d1d5db;
+}
+
+.volver-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.volver-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.dark .volver-btn {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}

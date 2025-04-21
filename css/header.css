@@ -1,0 +1,43 @@
+header {
+    background: linear-gradient(90deg, 
+    rgba(77, 183, 199, 1) 0%, 
+    rgba(60, 150, 204, 1) 25%, 
+    rgba(40, 120, 203, 1) 50%, 
+    rgba(22, 94, 201, 1) 89%, 
+    rgba(40, 120, 203, 1) 100%);
+    background-size: 400% 400%;
+    animation: animateLightGradient 15s ease infinite;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+.logo {
+    animation: pulseLogo 15s ease-in-out infinite;
+}
+
+.logo-image {
+    height: 200px;
+}
+
+.dark header {
+    background: linear-gradient(90deg, 
+    rgba(52, 92, 140, 1) 0%, 
+    rgba(38, 74, 130, 1) 25%, 
+    rgba(20, 42, 115, 1) 50%, 
+    rgba(8, 16, 105, 1) 89%, 
+    rgba(20, 42, 115, 1) 100%);
+    background-size: 400% 100%;
+    animation: animateGradient 12s ease infinite;
+    color: white;
+}
