@@ -1,9 +1,15 @@
 window.addEventListener("load", () => {
+    initSections();
+    initLogo();
+    initPanels();
+    initPreloader();
+    initThemeSwitch();
+    initFileInput();
+    initMenuToggle();
+});
 
-
-    // Hacer que las secciones se muestren gradualmente
+function initSections() {
     const sections = document.querySelectorAll('section');
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -11,46 +17,105 @@ window.addEventListener("load", () => {
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1
-    });
+    }, { threshold: 0.1 });
 
     sections.forEach(section => {
         section.classList.add('hidden');
         observer.observe(section);
     });
+}
 
+function initLogo() {
     const logo = document.querySelector(".preloader-logo img");
-  
-    // Mostrar logo 
     setTimeout(() => {
-      logo.style.opacity = 1;
-    }, 200); 
-  
-    // Abrir paneles 
+        logo.style.opacity = 1;
+    }, 200);
+}
+
+function initPanels() {
     setTimeout(() => {
-      document.querySelector(".panel.left").style.transform = "translateX(-100%)";
-      document.querySelector(".panel.right").style.transform = "translateX(100%)";
+        togglePanelVisibility(".panel.left", "-100%");
+        togglePanelVisibility(".panel.right", "100%");
     }, 600);
-  
-    // Ocultar preloader 
+}
+
+function togglePanelVisibility(selector, translateValue) {
+    document.querySelector(selector).style.transform = `translateX(${translateValue})`;
+}
+
+function initPreloader() {
     setTimeout(() => {
-      const preloader = document.getElementById("preloader");
-      preloader.style.opacity = 0;
-      preloader.style.transition = "opacity 0.3s ease";
-  
-      // Habilitar scroll
-      document.body.classList.remove("preloader-active");
-  
-      setTimeout(() => {
-        preloader.style.display = "none";
-      }, 300);
-    }, 1200); 
-  });
+        const preloader = document.getElementById("preloader");
+        preloader.style.opacity = 0;
+        preloader.style.transition = "opacity 0.3s ease";
+        document.body.classList.remove("preloader-active");
 
+        setTimeout(() => {
+            preloader.style.display = "none";
+        }, 300);
+    }, 1200);
+}
 
-// Hacer que el header se quede fijo cuando se hace scroll
+function initThemeSwitch() {
+    const themeSwitch = document.getElementById("theme-switch");
+    const body = document.body;
+    const darkMode = localStorage.getItem("dark-mode");
+
+    if (darkMode === "enabled") {
+        body.classList.add("dark");
+    }
+
+    themeSwitch.addEventListener("click", () => {
+        body.classList.toggle("dark");
+        localStorage.setItem("dark-mode", body.classList.contains("dark") ? "enabled" : "disabled");
+    });
+}
+
+function initFileInput() {
+    const input = document.getElementById('archivo');
+    const fileName = document.getElementById('file-name');
+
+    input.addEventListener('change', () => {
+        updateFileName(input, fileName);
+    });
+}
+
+function updateFileName(input, fileName) {
+    fileName.textContent = input.files.length > 0 ? input.files[0].name : 'Ningún archivo seleccionado';
+}
+
+function initMenuToggle() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+    });
+
+    const navLinks = document.querySelectorAll('.mobile-nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
+            menuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+        }
+    });
+}
+
+// Observers for header and section navigation
 document.addEventListener('DOMContentLoaded', () => {
+    initHeaderObserver();
+    initSectionObserver();
+});
+
+function initHeaderObserver() {
     const nav = document.querySelector('nav');
     const header = document.querySelector('header');
 
@@ -65,10 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     observer.observe(header);
-});
+}
 
-// Hacer que el menú se actualice cuando se hace scroll
-document.addEventListener('DOMContentLoaded', () => {
+function initSectionObserver() {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav ul li a');
 
@@ -90,108 +154,45 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => {
         observer.observe(section);
     });
+}
 
-    const input = document.getElementById('archivo');
-    const fileName = document.getElementById('file-name');
+// Modal handling
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const modalCaption = document.getElementById("modal-caption");
+const closeBtn = document.querySelector(".close");
+const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".prev");
+const cards = document.querySelectorAll(".galeria-card img");
 
-    
-    
-    // Manejo del modal de la galería
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modal-img");
-    const modalCaption = document.getElementById("modal-caption");
-    const closeBtn = document.querySelector(".close");
-    const nextBtn = document.querySelector(".next");
-    const prevBtn = document.querySelector(".prev");
-    const cards = document.querySelectorAll(".galeria-card img");
+let currentIndex = 0;
 
-    let currentIndex = 0;
+function showModal(index) {
+    const img = cards[index];
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    modalCaption.textContent = img.alt;
+    currentIndex = index;
+}
 
-    function showModal(index) {
-        const img = cards[index];
-        modal.style.display = "block";
-        modalImg.src = img.src;
-        modalCaption.textContent = img.alt;
-        currentIndex = index;
-    }
-
-    cards.forEach((img, index) => {
-        img.addEventListener("click", () => showModal(index));
-    });
-
-    closeBtn.onclick = () => modal.style.display = "none";
-
-    nextBtn.onclick = () => {
-        currentIndex = (currentIndex + 1) % cards.length;
-        showModal(currentIndex);
-    }
-
-    prevBtn.onclick = () => {
-        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-        showModal(currentIndex);
-    }
-
-    // Cerrar modal al hacer clic fuera de la imagen
-    modal.onclick = (e) => {
-        if (e.target === modal) modal.style.display = "none";
-    }
-    
-    // Mantener modo oscuro con localStorage
-    const themeSwitch = document.getElementById("theme-switch");
-    const body = document.body;
-
-    const darkMode = localStorage.getItem("dark-mode");
-    if (darkMode === "enabled") {
-        body.classList.add("dark");
-    }
-
-    themeSwitch.addEventListener("click", () => {
-        body.classList.toggle("dark");
-        localStorage.setItem("dark-mode", body.classList.contains("dark") ? "enabled" : "disabled");
-    });
-
-    // Manejo del input de archivo
-    input.addEventListener('change', () => {
-        fileName.textContent = input.files.length > 0 ? input.files[0].name : 'Ningún archivo seleccionado';
-        });
-    const fileInput = document.getElementById('archivo');
-    const fileName1 = document.getElementById('file-name');
-
-    if (fileInput && fileName) {
-        fileInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                fileName.textContent = this.files[0].name;
-            } else {
-                fileName.textContent = 'Ningún archivo seleccionado';
-            }
-        });
-    }
-
+cards.forEach((img, index) => {
+    img.addEventListener("click", () => showModal(index));
 });
 
-// Menú hamburguesa
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileNav = document.querySelector('.mobile-nav');
+closeBtn.onclick = () => modal.style.display = "none";
 
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    mobileNav.classList.toggle('active');
-});
+nextBtn.onclick = () => {
+    currentIndex = (currentIndex + 1) % cards.length;
+    showModal(currentIndex);
+}
 
-// Cerrar menú al hacer clic en un enlace
-const navLinks = document.querySelectorAll('.mobile-nav a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        mobileNav.classList.remove('active');
-    });
-});
+prevBtn.onclick = () => {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    showModal(currentIndex);
+}
 
-// Cerrar menú al hacer clic fuera de él
-document.addEventListener('click', (e) => {
-    if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
-        menuToggle.classList.remove('active');
-        mobileNav.classList.remove('active');
-    }
-});
+// Close modal when clicking outside the image
+modal.onclick = (e) => {
+    if (e.target === modal) modal.style.display = "none";
+}
 

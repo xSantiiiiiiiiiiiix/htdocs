@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="AMedida3D es un emprendimiento de impresión 3D personalizada. Creamos productos únicos para cada cliente, desde llaveros hasta prototipos funcionales.">
+    <link rel="shortcut icon" href="img/amedida3d_ico.ico" />
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/navigation.css">
@@ -16,11 +19,15 @@
     <link rel="stylesheet" href="css/floating-elements.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="shortcut icon" href="img/amedida3d_ico.ico" />
-    <script src="js/script.js" defer></script>
-    <title>AMedida3D</title>
 
+    <!-- Meta Tags for SEO and Social Media -->
     <meta name="author" content="AMedida3D">
+    <link rel="canonical" href="https://amedida3d.ddns.net">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="alexa" content="index, follow">
+    <meta name="yandex" content="index, follow">
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://amedida3d.ddns.net">
@@ -39,25 +46,19 @@
     <meta name="twitter:image" content="https://amedida3d.ddns.net/img/logo.png">
     <meta name="og:image:alt" content="Logo de AMedida3D">
 
-    <link rel="canonical" href="https://amedida3d.ddns.net">
-
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="bingbot" content="index, follow">
-    <meta name="alexa" content="index, follow">
-    <meta name="yandex" content="index, follow">
-    
+    <title>AMedida3D</title>
+    <script src="js/script.js" defer></script>
 </head>
 
 <body class="preloader-active">
-
+    <!-- Preloader -->
     <div id="preloader">
         <div class="preloader-logo">
-          <img src="img/amedida3d_png.png" alt="Logo AMedida3D" />
+            <img src="img/amedida3d_png.png" alt="Logo AMedida3D" />
         </div>
         <div class="panel left"></div>
         <div class="panel right"></div>
-      </div>
+    </div>
 
     <header>
         <button id="theme-switch">
@@ -73,14 +74,13 @@
             <img src="img/amedida3d_png.png" alt="AMedida3D Logo" class="logo-image" style="height: 200px;">
         </a>
         <p>Vos lo soñás, nosotros lo imprimimos. ✨</p>
-
         <nav class="desktop-nav">
             <ul>
                 <li><a href="#catalogo">¿Qué hacemos?</a></li>
                 <li><a href="#pedidos">Pedidos Personalizados</a></li>
                 <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
                 <li><a href="#galeria">Galería de Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#footer">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -91,141 +91,130 @@
             <li><a href="#pedidos">Pedidos Personalizados</a></li>
             <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
             <li><a href="#galeria">Galería de Proyectos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#footer">Contacto</a></li>
         </ul>
     </nav>
 
-    <section id="catalogo">
+    <main>
+        <section id="catalogo">
+            <h2>¿Qué hacemos?</h2>
+            <div class="grid">
+                <div class="card">🔑 Llaveros personalizados</div>
+                <div class="card">📱 Soportes de celular</div>
+                <div class="card">🎁 Regalos únicos</div>
+                <div class="card">🧩 Piezas funcionales</div>
+                <div class="card">⚙️ Prototipos a medida</div>
+                <div class="card">🎨 Diseño 3D personalizado</div>
+                <div class="card">🖨️ Impresión 3D en diferentes materiales</div>
+                <div class="card">📦 Envíos a todo el país</div>
+            </div>
+        </section>
 
-        <h2>¿Qué hacemos?</h2>
-        <div class="grid">
-            <div class="card">🔑 Llaveros personalizados</div>
-            <div class="card">📱 Soportes de celular</div>
-            <div class="card">🎁 Regalos únicos</div>
-            <div class="card">🧩 Piezas funcionales</div>
-            <div class="card">⚙️ Prototipos a medida</div>
-            <div class="card">🎨 Diseño 3D personalizado</div>
-            <div class="card">🖨️ Impresión 3D en diferentes materiales</div>
-            <div class="card">📦 Envíos a todo el país</div>
+        <div class="separator"></div>
+
+        <section class="pedido-form scroll-reveal" id="pedidos">
+            <form method="POST" action="https://formsubmit.co/amedida3d.ar@gmail.com" enctype="multipart/form-data">
+                <fieldset>
+                    <legend>Pedidos Personalizados</legend>
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://amedida3d.ddns.net/gracias">
+                
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="Correo" required>      
+
+                <label for="descripcion">Descripción del modelo</label>
+                <textarea id="descripcion" name="descripcion" placeholder="Describe detalladamente las características del modelo que necesitas imprimir..." required></textarea>
+
+                <div class="form-row">
+                    <div>
+                        <label for="material">Material</label>
+                        <select id="material" name="material" required>
+                            <option value="" disabled selected>Selecciona un material</option>
+                            <option>PETG - Fuerte</option>
+                            <option>PLA - Común</option>
+                            <option>No sé</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="color">Color </label>
+                        <input type="text" id="color" name="color" required> 
+                    </div>
+                </div>
+
+                <div class="dimensiones-row">
+                    <div>
+                        <label for="ancho">Ancho (mm)</label>
+                        <input type="number" id="ancho" name="ancho" required>
+                    </div>
+                    <div>
+                        <label for="alto">Alto (mm)</label>
+                        <input type="number" id="alto" name="alto" required>
+                    </div>
+                    <div>
+                        <label for="profundidad">Profundidad (mm)</label>
+                        <input type="number" id="profundidad" name="profundidad" required>
+                    </div>
+                </div>
+
+                <div class="file-upload">
+                    <label for="archivo" class="file-label">
+                        <span>Subir archivo (opcional)</span>
+                    </label>
+                    <input type="file" id="archivo" name="archivo" accept=".stl,.obj,.3mf,.step,.iges,.blend,.png,.jpg,.jpeg">
+                    <span class="file-name" id="file-name">Ningún archivo seleccionado</span>
+                </div>
+
+                <button type="submit"><span>Enviar pedido</span></button>
+                </fieldset>
+            </form>
+        </section>
+
+        <div class="separator"></div>
+
+        <section id="sobre-nosotros">
+            <h2>¿Quiénes somos?</h2>
+            <p>Somos dos amigos apasionados por la creatividad y la tecnología. Un día, se nos ocurrió la idea de iniciar un emprendimiento para diseñar e imprimir productos 3D personalizados. Desde llaveros hasta prototipos funcionales, queremos ofrecer soluciones únicas para cada cliente.</p>
+            <p>Estamos comenzando este emocionante viaje y nuestro objetivo es mejorar constantemente para brindar la mejor calidad y servicio. Creemos en el poder de las ideas y en hacerlas realidad.</p>
+        </section>
+
+        <div class="separator"></div>
+
+        <section id="galeria">
+            <h2>Galería de Proyectos</h2>
+            <div class="galeria-container">
+                <div class="galeria-card">
+                    <img src="img/llavero.jpg" alt="Llaveros personalizados">
+                    <p>Llaveros personalizados</p>
+                </div>
+                <div class="galeria-card">
+                    <img src="img/16_Soporte-de-Celular-Plastico_04.jpg" alt="Soportes de celular">
+                    <p>Soportes de celular</p>
+                </div>
+                <div class="galeria-card">
+                    <img src="img/prototipo-ultimaker.jpeg" alt="Prototipos funcionales">
+                    <p>Prototipos funcionales</p>
+                </div>
+                <div class="galeria-card">
+                    <img src="img/piezas_f.jpeg" alt="Piezas funcionales">
+                    <p>Piezas funcionales</p>
+                </div>
+            </div>
+        </section>
+        
+        <div id="modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <div id="modal-caption"></div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
         </div>
-
-    </section>
-
-    <div class="separator"></div>
-
-    <section class="pedido-form scroll-reveal" id="pedidos">
-
-        <form method="POST" action="https://formsubmit.co/amedida3d.ar@gmail.com" enctype="multipart/form-data">
-            <fieldset>
-                <legend>Pedidos Personalizados</legend>
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://amedida3d.ddns.net/gracias">
-            
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="Correo" required>      
-
-            <label for="descripcion">Descripción del modelo</label>
-            <textarea id="descripcion" name="descripcion" placeholder="Describe detalladamente las características del modelo que necesitas imprimir..." required></textarea>
-
-            <div class="form-row">
-                <div>
-                    <label for="material">Material</label>
-                    <select id="material" name="material" required>
-                        <option value="" disabled selected>Selecciona un material</option>
-                        <option>PETG - Fuerte</option>
-                        <option>PLA - Común</option>
-                        <option>No sé</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="color">Color </label>
-                    <input type="text" id="color" name="color" required> 
-                </div>
-            </div>
-
-            <div class="dimensiones-row">
-                <div>
-                    <label for="ancho">Ancho (mm)</label>
-                    <input type="number" id="ancho" name="ancho" required>
-                </div>
-                <div>
-                    <label for="alto">Alto (mm)</label>
-                    <input type="number" id="alto" name="alto" required>
-                </div>
-                <div>
-                    <label for="profundidad">Profundidad (mm)</label>
-                    <input type="number" id="profundidad" name="profundidad" required>
-                </div>
-            </div>
-
-            <div class="file-upload">
-                <label for="archivo" class="file-label">
-                    <span>Subir archivo (opcional)</span>
-                </label>
-                <input type="file" id="archivo" name="archivo" accept=".stl,.obj,.3mf,.step,.iges,.blend,.png,.jpg,.jpeg">
-                <span class="file-name" id="file-name">Ningún archivo seleccionado</span>
-            </div>
-
-            <button type="submit"><span>Enviar pedido</span></button>
-            </fieldset>
-        </form>
-    </section>
-
-    <div class="separator"></div>
-
-    <section id="sobre-nosotros">
-        <h2>¿Quiénes somos?</h2>
-        <p>Somos dos amigos apasionados por la creatividad y la tecnología. Un día, se nos ocurrió la idea de iniciar un emprendimiento para diseñar e imprimir productos 3D personalizados. Desde llaveros hasta prototipos funcionales, queremos ofrecer soluciones únicas para cada cliente.</p>
-        <p>Estamos comenzando este emocionante viaje y nuestro objetivo es mejorar constantemente para brindar la mejor calidad y servicio. Creemos en el poder de las ideas y en hacerlas realidad.</p>
-    </section>
-
-    <div class="separator"></div>
-
-    <section id="galeria">
-        <h2>Galería de Proyectos</h2>
-        <div class="galeria-container">
-            <div class="galeria-card">
-                <img src="img/llavero.jpg" alt="Llaveros personalizados">
-                <p>Llaveros personalizados</p>
-            </div>
-            <div class="galeria-card">
-                <img src="img/16_Soporte-de-Celular-Plastico_04.jpg" alt="Soportes de celular">
-                <p>Soportes de celular</p>
-            </div>
-            <div class="galeria-card">
-                <img src="img/prototipo-ultimaker.jpeg" alt="Prototipos funcionales">
-                <p>Prototipos funcionales</p>
-            </div>
-            <div class="galeria-card">
-                <img src="img/piezas_f.jpeg" alt="Piezas funcionales">
-                <p>Piezas funcionales</p>
-            </div>
-
-        </div>
-    </section>
-    
-    <div id="modal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modal-img">
-        <div id="modal-caption"></div>
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-    </div>
-    
-    <div class="separator"></div>
-    
-    <section id="contacto">
-        <h2>Contacto</h2>
+        
+    <footer id="footer">
+        <p>Contacto: amedida3d.ar@gmail.com | Tel: (343) 415-0181</p>
         <p>Instagram: <a href="https://instagram.com/amedida.3d" target="_blank">@AMedida3D</a></p>
         <p>WhatsApp: <a href="https://wa.me/5493434150181" target="_blank">Enviar mensaje</a></p>
-        <p>Email: amedida3d.ar@gmail.com</p>
-    </section>
-
-    <footer>
-        <p>Contacto: amedida3d.ar@gmail.com | Tel: (343) 415-0181</p>
         <p class="copyright">© 2025 AMedida3D. Todos los derechos reservados.</p>
     </footer>
-
 
     <div class="floating-buttons">
         
@@ -240,8 +229,6 @@
             </svg>
         </a>
     </div>
-    
-
     
 </body>
 </html>
