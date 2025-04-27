@@ -116,17 +116,3 @@ section:nth-child(even) {
 .dark #sobre-nosotros p {
     color: #f8f9fa;
 }
-
-.dark #contacto {
-    background-color: #181a1b;
-    color: #eee5d7;
-    border-color: #383433;
-}
-
-.dark #contacto h2 {
-    color: #eee5d7;
-}
-
-.dark #contacto p {
-    color: #f8f9fa;
-}
