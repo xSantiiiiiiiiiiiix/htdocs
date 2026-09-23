@@ -8,8 +8,8 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: var(--base-color);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     scroll-behavior: smooth;
@@ -32,21 +32,25 @@ footer {
 }
 
 :root {
-    --base-color: white;
+    --base-color: #f8fafc;
     --base-variant: #e8e9ed;
     --text-color: #111528;
     --secondary-text: #232738;
     --primary-color: #3a435d;
     --accent-color: #0071ff;
+    --surface-color: #ffffff;
+    --border-color: #e2e8f0;
 }
 
 .dark {
-    --base-color: #070b1d;
-    --base-variant: #101425;
-    --text-color: #ffffff;
-    --secondary-text: #a4a5b8;
+    --base-color: #030712;
+    --base-variant: #111827;
+    --text-color: #f8fafc;
+    --secondary-text: #cbd5e1;
     --primary-color: #3a435d;
-    --accent-color: #0071ff;
+    --accent-color: #60a5fa;
+    --surface-color: #111827;
+    --border-color: #334155;
 }
 
 :target {

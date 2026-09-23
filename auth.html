@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceso - AMedida3D</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/store.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>window.SUPABASE_CONFIG = { url: 'https://yftqsypswohrkedeoqtk.supabase.co', anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlmdHFzeXBzd29ocmtlZGVvcXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwNDc1NzQsImV4cCI6MjEwMTYyMzU3NH0._6-aBcryxpYhy67JYD6okn1HbDPGZtSmgZ8UXrTOHbY' };</script>
+  <script src="js/supabase-client.js" defer></script>
+  <script src="js/auth.js" defer></script>
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="auth-card">
+      <h1>Ingresar</h1>
+      <form data-auth-form data-mode="login">
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <label>Contraseña<input name="password" type="password" required minlength="6" autocomplete="current-password"></label>
+        <button type="submit">Iniciar sesión</button>
+      </form>
+      <p id="auth-status" role="status"></p>
+      <p>¿No tenés cuenta? <a href="#" id="show-register">Registrate</a></p>
+    </section>
+  </main>
+  <script>
+    document.getElementById('show-register').addEventListener('click', function (event) {
+      event.preventDefault();
+      const form = document.querySelector('[data-auth-form]');
+      const title = document.querySelector('h1');
+      const button = form.querySelector('button');
+      const register = form.dataset.mode !== 'register';
+      form.dataset.mode = register ? 'register' : 'login';
+      title.textContent = register ? 'Crear cuenta' : 'Ingresar';
+      button.textContent = register ? 'Registrarme' : 'Iniciar sesión';
+      this.textContent = register ? 'Ya tengo una cuenta' : 'Registrate';
+    });
+  </script>
+</body>
+</html>

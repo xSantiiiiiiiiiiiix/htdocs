@@ -1,0 +1,36 @@
+.product-modal[hidden] { display: none; }
+.product-modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 1rem; background: rgba(15, 23, 42, .72); }
+.product-modal-card { position: relative; width: min(760px, 100%); display: grid; grid-template-columns: minmax(220px, .9fr) 1.1fr; gap: 1.5rem; padding: 1.5rem; border-radius: 24px; background: var(--surface-color, #fff); color: var(--text-color, #111528); box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+.product-modal-card img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; }
+.product-modal-close { position: absolute; top: .7rem; right: .7rem; border: 0; border-radius: 50%; width: 2.2rem; height: 2.2rem; cursor: pointer; }
+.product-modal-category { color: #2563eb; font-weight: 700; }
+.product-modal-price { font-size: 1.4rem; font-weight: 800; color: #2563eb; }
+.product-modal-add { border: 0; border-radius: 999px; padding: .8rem 1.1rem; color: #fff; background: #1d4ed8; cursor: pointer; font-weight: 700; }
+.modal-open { overflow: hidden; }
+.auth-shell, .checkout-shell { max-width: 720px; margin: 3rem auto; padding: 1.5rem; }
+.auth-card, .checkout-card { padding: 2rem; border-radius: 24px; background: var(--surface-color, #fff); box-shadow: 0 16px 40px rgba(15,23,42,.1); }
+.auth-card form, .checkout-card form { display: grid; gap: 1rem; }
+.auth-card label, .checkout-card label { display: grid; gap: .35rem; font-weight: 600; }
+.auth-card input, .checkout-card input, .checkout-card textarea { padding: .8rem; border: 1px solid #cbd5e1; border-radius: 10px; }
+.auth-card button, .checkout-card button { padding: .8rem 1rem; border: 0; border-radius: 999px; background: #1d4ed8; color: #fff; cursor: pointer; font-weight: 700; }
+.purchase-list { display: grid; gap: .7rem; margin: 1rem 0; }
+.purchase-list article { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem; padding: .9rem; border: 1px solid #e2e8f0; border-radius: 12px; }
+.auth-controls { position: absolute; top: 1rem; left: 1rem; z-index: 10; }
+.auth-login-button, .auth-account summary { border: 1px solid rgba(255,255,255,.55); border-radius: 999px; padding: .65rem 1rem; background: rgba(15,23,42,.35); color: #fff; cursor: pointer; font-weight: 700; list-style: none; }
+.auth-account { position: relative; }
+.auth-account-menu { position: absolute; top: calc(100% + .5rem); left: 0; min-width: 190px; padding: .45rem; border-radius: 14px; background: #fff; box-shadow: 0 14px 35px rgba(15,23,42,.2); text-align: left; }
+.auth-account-menu a, .auth-account-menu button { display: block; width: 100%; padding: .65rem .75rem; border: 0; border-radius: 9px; background: transparent; color: #172033; text-decoration: none; text-align: left; cursor: pointer; font: inherit; }
+.auth-account-menu a:hover, .auth-account-menu button:hover { background: #eff6ff; }
+.site-auth-modal[hidden] { display: none; }
+.site-auth-modal { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1rem; background: rgba(15,23,42,.72); }
+.site-auth-card { position: relative; width: min(420px, 100%); padding: 1.6rem; border-radius: 22px; background: var(--surface-color, #fff); color: var(--text-color, #111528); box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+.site-auth-close { position: absolute; top: .65rem; right: .65rem; border: 0; background: transparent; font-size: 1.6rem; cursor: pointer; }
+.site-auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; margin: 1rem 0; padding: .25rem; border-radius: 12px; background: #e2e8f0; }
+.site-auth-tabs button { border: 0; border-radius: 9px; padding: .65rem; background: transparent; cursor: pointer; }
+.site-auth-tabs button.active { background: #fff; color: #1d4ed8; font-weight: 700; box-shadow: 0 2px 8px rgba(15,23,42,.1); }
+.site-auth-card form { display: grid; gap: .9rem; }
+.site-auth-card label { display: grid; gap: .35rem; font-weight: 600; }
+.site-auth-card input { padding: .75rem; border: 1px solid #cbd5e1; border-radius: 9px; }
+.site-auth-card form button { padding: .8rem; border: 0; border-radius: 999px; background: #1d4ed8; color: #fff; cursor: pointer; font-weight: 700; }
+@media (max-width: 680px) { .auth-controls { top: .75rem; left: .75rem; } .auth-account-menu { position: fixed; left: .75rem; top: 4.2rem; } }
+@media (max-width: 680px) { .product-modal-card { grid-template-columns: 1fr; max-height: 90vh; overflow: auto; } }

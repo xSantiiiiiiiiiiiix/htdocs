@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:,">
+  <title>Panel de Administración - AMedida3D</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --card: #111827;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #22c55e;
+      --accent-2: #3b82f6;
+      --danger: #ef4444;
+      --border: #334155;
+      --warning: #f59e0b;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg), #111827);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      background: rgba(17,24,39,0.95);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.3);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    .subtitle { color: var(--muted); margin-top: 4px; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #172033, #111827);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .stat-card .label { color: var(--muted); font-size: 0.9rem; }
+    .stat-card .value { font-size: 1.5rem; font-weight: 700; margin-top: 6px; }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .login-box {
+      max-width: 460px;
+      margin: 0 auto;
+      display: none;
+    }
+
+    .login-box.active { display: block; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+
+    label { font-size: 0.95rem; color: var(--muted); }
+    input, textarea, select, button {
+      font: inherit;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      color: var(--text);
+    }
+
+    textarea { resize: vertical; min-height: 90px; }
+    button {
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    button:hover { transform: translateY(-1px); }
+    button:disabled { opacity: 0.7; cursor: wait; }
+
+    .btn-primary { background: var(--accent); color: #052e16; font-weight: 700; }
+    .btn-secondary { background: var(--accent-2); color: #ffffff; }
+    .btn-danger { background: var(--danger); color: #ffffff; }
+    .btn-toggle { background: #334155; color: #ffffff; }
+    .btn-edit { background: var(--warning); color: #111827; font-weight: 700; }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .search-row input, .search-row select { min-width: 220px; flex: 1; }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 12px; border-bottom: 1px solid var(--border); text-align: left; }
+    th { color: var(--muted); font-weight: 600; }
+    .thumb { width: 54px; height: 54px; object-fit: cover; border-radius: 10px; border: 1px solid var(--border); }
+    .badge { display: inline-block; padding: 5px 8px; border-radius: 999px; font-size: 0.8rem; }
+    .badge.active { background: rgba(34,197,94,0.18); color: #86efac; }
+    .badge.inactive { background: rgba(239,68,68,0.18); color: #fca5a5; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(2,6,23,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 20;
+    }
+
+    .modal.hidden { display: none; }
+    .modal-card {
+      width: min(700px, 100%);
+      background: #111827;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .chart-card {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      min-height: 260px;
+    }
+
+    .chart-card canvas {
+      width: 100% !important;
+      height: 220px !important;
+    }
+
+    .sql-results {
+      margin-top: 12px;
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      overflow-x: auto;
+    }
+
+    .sql-results table {
+      min-width: 100%;
+    }
+
+    .sql-success { color: #86efac; }
+    .sql-error { color: #fca5a5; }
+
+    .hidden { display: none !important; }
+    .status { margin-top: 10px; color: var(--muted); font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .form-grid, .stats-grid { grid-template-columns: 1fr; }
+      .container { padding: 16px; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .search-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body data-requires-role="admin">
+  <div class="container">
+    <div class="topbar">
+      <div>
+        <h1>Panel de administración</h1>
+        <p class="subtitle">Gestioná productos de impresión 3D desde el navegador</p>
+      </div>
+      <button id="logout-btn" class="btn-secondary hidden">Cerrar sesión</button>
+    </div>
+
+    <!-- SECCIÓN DE LOGIN -->
+    <section id="login-section" class="panel login-box active">
+      <h2>Acceso protegido</h2>
+      <p class="subtitle">Ingresá con una cuenta que tenga rol de administrador.</p>
+      <form id="login-form">
+        <div class="form-grid">
+          <div class="field full">
+            <label for="admin-email">Email</label>
+            <input type="email" id="admin-email" required />
+          </div>
+          <div class="field full">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" required />
+          </div>
+          <div class="field full">
+            <button id="login-btn" class="btn-primary" type="submit">Entrar</button>
+          </div>
+        </div>
+      </form>
+      <p id="login-status" class="status"></p>
+    </section>
+
+    <!-- SECCIÓN ADMINISTRADOR -->
+    <section id="admin-section" class="hidden">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="label">Total de productos</div>
+          <div class="value" id="stat-total">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Productos activos</div>
+          <div class="value" id="stat-activos">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Valor total del catálogo</div>
+          <div class="value" id="stat-valor">$0</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Añadir Nuevo Producto</h2>
+        <form id="producto-form">
+          <div class="form-grid">
+            <div class="field">
+              <label for="nombre">Nombre del Producto</label>
+              <input type="text" id="nombre" name="nombre" required />
+            </div>
+            <div class="field">
+              <label for="precio">Precio en ARS</label>
+              <input type="number" id="precio" name="precio" min="0" step="1" required />
+            </div>
+            <div class="field">
+              <label for="categoria">Categoría</label>
+              <select id="categoria" name="categoria">
+                <option value="Soportes">Soportes</option>
+                <option value="Prototipos">Prototipos</option>
+                <option value="Piezas">Piezas</option>
+                <option value="Decoración">Decoración</option>
+                <option value="Personalizados">Personalizados</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="imagen_url">URL de la Imagen</label>
+              <input type="text" id="imagen_url" name="imagen_url" placeholder="img/ejemplo.png o URL externa" />
+            </div>
+            <div class="field full">
+              <label for="descripcion">Descripción</label>
+              <textarea id="descripcion" name="descripcion" required></textarea>
+            </div>
+            <div class="field full">
+              <label><input type="checkbox" id="activo" name="activo" checked /> Estado Activo</label>
+            </div>
+            <div class="field full">
+              <button id="submit-product-btn" class="btn-primary" type="submit">Cargar Producto</button>
+            </div>
+          </div>
+        </form>
+        <p id="form-status" class="status">Completá los datos para agregar un producto.</p>
+      </div>
+
+      <div class="panel">
+        <h2>Pedidos personalizados / cotizaciones</h2>
+        <p class="subtitle">Gestioná solicitudes recibidas desde la portada y actualizá su estado.</p>
+        <div id="pedidos-lista" class="table-wrap"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Gráficos del catálogo</h2>
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Stock disponible por producto</h3>
+            <canvas id="stock-chart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Ventas e ingresos estimados</h3>
+            <canvas id="sales-chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="toolbar">
+          <div class="search-row">
+            <input type="search" id="search-input" placeholder="Buscar por nombre o descripción" />
+            <select id="category-filter">
+              <option value="">Todas las categorías</option>
+              <option value="Soportes">Soportes</option>
+              <option value="Prototipos">Prototipos</option>
+              <option value="Piezas">Piezas</option>
+              <option value="Decoración">Decoración</option>
+              <option value="Personalizados">Personalizados</option>
+            </select>
+          </div>
+        </div>
+        <div id="productos-lista" class="table-wrap"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Consola de Consultas SQL</h2>
+        <p class="subtitle">Podés ejecutar consultas SQL directas a través de una función RPC en Supabase.</p>
+        <textarea id="sql-input" rows="8" placeholder="Ejemplo: select * from productos limit 5;"></textarea>
+        <div class="actions" style="margin-top: 10px;">
+          <button id="run-sql-btn" class="btn-primary" type="button">Ejecutar Consulta</button>
+        </div>
+        <p id="sql-status" class="status"></p>
+        <div id="sql-results" class="sql-results"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL EDICIÓN -->
+  <div id="edit-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="edit-title">
+    <div class="modal-card">
+      <h3 id="edit-title">Editar producto</h3>
+      <form id="edit-product-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="edit-nombre">Nombre</label>
+            <input type="text" id="edit-nombre" name="nombre" required />
+          </div>
+          <div class="field">
+            <label for="edit-precio">Precio</label>
+            <input type="number" id="edit-precio" name="precio" min="0" step="1" required />
+          </div>
+          <div class="field">
+            <label for="edit-categoria">Categoría</label>
+            <select id="edit-categoria" name="categoria">
+              <option value="Soportes">Soportes</option>
+              <option value="Prototipos">Prototipos</option>
+              <option value="Piezas">Piezas</option>
+              <option value="Decoración">Decoración</option>
+              <option value="Personalizados">Personalizados</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="edit-imagen_url">Imagen</label>
+            <input type="text" id="edit-imagen_url" name="imagen_url" placeholder="img/ejemplo.png o URL" />
+          </div>
+          <div class="field full">
+            <label for="edit-descripcion">Descripción</label>
+            <textarea id="edit-descripcion" name="descripcion" required></textarea>
+          </div>
+          <div class="field full">
+            <label><input type="checkbox" id="edit-activo" name="activo" /> Estado Activo</label>
+          </div>
+          <div class="field full">
+            <button id="save-edit-btn" class="btn-primary" type="submit">Guardar cambios</button>
+            <button type="button" id="cancel-edit-btn" class="btn-secondary">Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>window.SUPABASE_CONFIG = { url: 'https://yftqsypswohrkedeoqtk.supabase.co', anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlmdHFzeXBzd29ocmtlZGVvcXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwNDc1NzQsImV4cCI6MjEwMTYyMzU3NH0._6-aBcryxpYhy67JYD6okn1HbDPGZtSmgZ8UXrTOHbY' };</script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

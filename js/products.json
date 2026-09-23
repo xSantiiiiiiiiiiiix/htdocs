@@ -1,0 +1,42 @@
+[
+  {
+    "id": "g001",
+    "name": "Soporte de auriculares Kratos",
+    "price": 1800,
+    "category": "Soportes",
+    "description": "Soporte de auriculares personalizado inspirado en el diseño Kratos.",
+    "image": "img/Soporte de Auriculares.jpg"
+  },
+  {
+    "id": "g002",
+    "name": "Soporte de celular",
+    "price": 1200,
+    "category": "Soportes",
+    "description": "Soporte de celular impreso en PETG con diseño funcional.",
+    "image": "img/Soporte de Celular.png"
+  },
+  {
+    "id": "g003",
+    "name": "Soporte de mando",
+    "price": 2200,
+    "category": "Prototipos",
+    "description": "Soporte para mando con base estable y diseño personalizado.",
+    "image": "img/Soporte Mando.png"
+  },
+  {
+    "id": "g004",
+    "name": "Piezas funcionales",
+    "price": 1600,
+    "category": "Piezas",
+    "description": "Conjunto de piezas funcionales para prototipos o reemplazos.",
+    "image": "img/amedida3d_png.png"
+  },
+  {
+    "id": "g005",
+    "name": "Cabeza decorativa Kratos",
+    "price": 2500,
+    "category": "Decoración",
+    "description": "Figura decorativa impresa en 3D para exhibición o regalo.",
+    "image": "img/Cabeza Kratos.png"
+  }
+]

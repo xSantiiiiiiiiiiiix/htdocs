@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Checkout - AMedida3D</title>
+    <link rel="shortcut icon" href="img/amedida3d_ico.ico" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
+    <link rel="stylesheet" href="css/preloader.css">
+    <link rel="stylesheet" href="css/floating-elements.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="css/store.css">
+
+    <script src="js/script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>window.SUPABASE_CONFIG = { url: 'https://yftqsypswohrkedeoqtk.supabase.co', anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlmdHFzeXBzd29ocmtlZGVvcXRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwNDc1NzQsImV4cCI6MjEwMTYyMzU3NH0._6-aBcryxpYhy67JYD6okn1HbDPGZtSmgZ8UXrTOHbY' };</script>
+    <script src="js/supabase-client.js" defer></script>
+    <script src="js/auth.js" defer></script>
+    <script src="js/carrito.js" defer></script>
+    <script src="js/checkout.js" defer></script>
+    <script src="js/chatbot.js" defer></script>
+  </head>
+
+  <body>
+    <header>
+        <div id="auth-controls" class="auth-controls"><button type="button" class="auth-login-button" data-open-auth>Iniciar sesión</button></div>
+        <button id="theme-switch">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
+        </button>
+        <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="index.html" class="logo">
+            <img src="img/amedida3d_png.png" alt="AMedida3D Logo" class="logo-image" style="height: 120px;">
+        </a>
+        <p>Vos lo soñás, nosotros lo imprimimos. ✨</p>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="index.html#catalogo">¿Qué hacemos?</a></li>
+                <li><a href="index.html#pedidos">Pedidos Personalizados</a></li>
+                <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
+                <li><a href="index.html#galeria">Galería de Proyectos</a></li>
+                <li><a href="cart.html">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="index.html#catalogo">¿Qué hacemos?</a></li>
+            <li><a href="index.html#pedidos">Pedidos Personalizados</a></li>
+            <li><a href="index.html#sobre-nosotros">Sobre Nosotros</a></li>
+            <li><a href="index.html#galeria">Galería de Proyectos</a></li>
+            <li><a href="cart.html">Carrito</a></li>
+        </ul>
+    </nav>
+
+    <main class="checkout-shell">
+      <section class="checkout-card">
+        <p class="page-badge">Finalizar compra</p>
+        <h1>Tu pedido está listo para pagar</h1>
+        <p class="checkout-intro">Podés pagar con Mercado Pago o enviarnos el resumen por email si algo falla.</p>
+        <form id="order-form">
+          <label>Nombre completo<input name="nombre_cliente" required></label>
+          <label>Email<input type="email" name="email_cliente" required></label>
+          <label>Teléfono<input name="telefono"></label>
+          <label>Dirección<input name="direccion"></label>
+          <div id="checkout-summary" class="checkout-summary"></div>
+          <button type="submit">Registrar pedido</button>
+          <a href="cart.html" class="checkout-secondary-btn">Volver al carrito</a>
+        </form>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <p>Contacto: amedida3d.ar@gmail.com | Tel: (343) 415-0181</p>
+      <p>Instagram: <a href="https://instagram.com/amedida.3d" target="_blank">@AMedida3D</a></p>
+      <p>WhatsApp: <a href="https://wa.me/5493434150181" target="_blank">Enviar mensaje</a></p>
+      <p class="copyright">© 2025 AMedida3D. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="floating-buttons">
+      <a href="https://instagram.com/amedida.3d" class="social-float instagram" target="_blank" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" class="social-icon">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5.2A4.8 4.8 0 1 0 16.8 12 4.8 4.8 0 0 0 12 7.2Zm6.3-1.7a1.2 1.2 0 1 0 1.2 1.2 1.2 1.2 0 0 0-1.2-1.2Z"/>
+        </svg>
+      </a>
+      <a href="https://wa.me/5493434150181" class="social-float whatsapp" target="_blank" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" class="social-icon">
+          <path d="M19.1 4.9A9.6 9.6 0 0 0 4.9 19.1L3 21l1.9-1.9a9.6 9.6 0 0 0 14.2-14.2Zm-5.2 13.4h-.1a8 8 0 0 1-4.1-1.1l-.3-.2-1.2.3.3-1.2-.2-.3a8 8 0 1 1 5.6 2.5Zm4.4-6.1c-.2-.1-1.2-.6-1.4-.7s-.3-.1-.4.1-.5.7-.6.8-.2.2-.4.1a6.4 6.4 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.5l.4-.4c.1-.1.1-.2.2-.3.1-.1.1-.2 0-.3l-.5-1.2a.4.4 0 0 0-.6-.2c-.1 0-.2.1-.3.2l-.4.5a1.2 1.2 0 0 0-.2.5 2 2 0 0 0 .5 1.7 8.6 8.6 0 0 0 4.2 4.2 2 2 0 0 0 1.7.5 1.2 1.2 0 0 0 .5-.2c.2-.2.3-.3.3-.5l.1-.4c0-.2 0-.3-.2-.4l-1.1-.6a.2.2 0 0 0-.2 0Z"/>
+        </svg>
+      </a>
+    </div>
+
+    <div id="cart-panel" class="cart-panel" aria-hidden="true">
+        <header>
+            <h3>Carrito</h3>
+            <button id="close-cart" aria-label="Cerrar carrito">✕</button>
+        </header>
+        <div id="cart-items" class="cart-items"></div>
+        <footer>
+            <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+            <button id="checkout">Checkout</button>
+        </footer>
+    </div>
+
+    <div id="chatbot-panel" class="chatbot-panel" aria-hidden="true">
+        <header>
+            <h3>Asistente</h3>
+            <button id="close-chat" aria-label="Cerrar chat">✕</button>
+        </header>
+        <div id="chat-messages" class="chat-messages"></div>
+        <form id="chat-form" class="chat-form">
+            <input type="text" id="chat-input" placeholder="Escribe tu consulta..." autocomplete="off" required />
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <div class="quick-action-stack">
+      <a href="catalog.html" class="quick-action catalog-action" aria-label="Ver catálogo">
+        <svg viewBox="0 0 24 24" class="quick-icon">
+          <path d="M4 5h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 0h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1ZM4 14h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1Zm9 0h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1Z"/>
+        </svg>
+      </a>
+      <button id="cart-button" class="quick-action cart-action" aria-label="Abrir carrito" type="button">
+        <svg viewBox="0 0 24 24" class="quick-icon">
+          <path d="M3 4h2l2.2 8.2a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L17 7H7"/>
+          <circle cx="10" cy="19" r="1.7"/>
+          <circle cx="17" cy="19" r="1.7"/>
+        </svg>
+        <span id="cart-count" class="badge">0</span>
+      </button>
+      <button id="chatbot-button" class="quick-action chat-action" aria-label="Abrir asistente" type="button">
+        <svg viewBox="0 0 24 24" class="quick-icon">
+          <path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/>
+        </svg>
+      </button>
+    </div>
+
+    <script type="application/obsolete">
+      (function(){
+        const KEY='santi_cart_v1';
+        const statusEl = document.getElementById('checkout-status');
+        const summaryEl = document.getElementById('checkout-summary');
+        const fallbackEl = document.getElementById('checkout-fallback');
+        const orderSummaryEl = document.getElementById('order-summary');
+        const payBtn = document.getElementById('checkout-pay-btn');
+        const emailBtn = document.getElementById('email-order');
+
+        function read(){ try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return[];} }
+        function format(n){ return Number(n).toFixed(2); }
+        function writeCart(cart){
+          localStorage.setItem(KEY, JSON.stringify(cart));
+          window.dispatchEvent(new CustomEvent('cart:updated', { detail: { cart } }));
+        }
+
+        function renderSummary(cart){
+          if(!cart.length){
+            summaryEl.innerHTML = '<div class="checkout-empty-state"><strong>Tu carrito está vacío.</strong></div>';
+            payBtn.disabled = true;
+            return;
+          }
+          const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0).toFixed(2);
+          const itemsHtml = cart.map((item, index) => `
+            <div class="checkout-item-row">
+              <div>• ${item.name} — <strong>$${format(item.price)}</strong></div>
+              <button class="checkout-remove-btn" type="button" data-index="${index}" aria-label="Quitar ${item.name}">Quitar</button>
+            </div>
+          `).join('');
+          summaryEl.innerHTML = `<div><strong>Resumen:</strong></div>${itemsHtml}<div class="checkout-total-row">Total estimado: $${total}</div>`;
+          payBtn.disabled = false;
+        }
+
+        function refreshCheckout(){
+          const cart = read();
+          renderSummary(cart);
+          if(!cart.length){
+            statusEl.textContent = 'Tu carrito está vacío. Agregá productos desde el catálogo para continuar.';
+            fallbackEl.style.display = 'none';
+            return;
+          }
+          statusEl.textContent = 'Listo para pagar con Mercado Pago o por email.';
+          fallbackEl.style.display = 'none';
+        }
+
+        function showFallback(cart){
+          const summary = cart.map(item => `${item.name} — $${format(item.price)}`).join('\n');
+          const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0).toFixed(2);
+          orderSummaryEl.textContent = summary + '\n\nTotal: $' + total;
+          fallbackEl.style.display = 'block';
+        }
+
+        async function startCheckout(){
+          const cart = read();
+          renderSummary(cart);
+          if(cart.length === 0){
+            statusEl.textContent = 'Tu carrito está vacío. Agregá productos desde el catálogo para continuar.';
+            return;
+          }
+
+          statusEl.textContent = 'Preparando tu pago con Mercado Pago…';
+          payBtn.disabled = true;
+          payBtn.classList.add('is-loading');
+
+          try {
+            const response = await fetch('/mp/create_preference', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ items: cart })
+            });
+            const data = await response.json();
+            if(data && data.init_point){
+              window.location.href = data.init_point;
+              return;
+            }
+            throw new Error('no init');
+          } catch (error) {
+            statusEl.textContent = 'No se pudo conectar con Mercado Pago. Podés continuar por email.';
+            showFallback(cart);
+          } finally {
+            payBtn.disabled = false;
+            payBtn.classList.remove('is-loading');
+          }
+        }
+
+        summaryEl.addEventListener('click', (e) => {
+          const removeBtn = e.target.closest('.checkout-remove-btn');
+          if (!removeBtn) return;
+
+          const index = Number(removeBtn.dataset.index);
+          const cart = read();
+          if (Number.isNaN(index) || index < 0 || index >= cart.length) return;
+
+          cart.splice(index, 1);
+          writeCart(cart);
+          refreshCheckout();
+        });
+
+        window.addEventListener('cart:updated', refreshCheckout);
+
+        payBtn.addEventListener('click', startCheckout);
+        emailBtn.addEventListener('click', () => {
+          const cart = read();
+          const summary = cart.map(item => `${item.name} — $${format(item.price)}`).join('\n');
+          const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0).toFixed(2);
+          const mail = 'santiagowaig@gmail.com';
+          const subject = encodeURIComponent('Pedido desde sitio web');
+          const body = encodeURIComponent('Resumen de pedido:\n\n' + summary + '\n\nTotal: $' + total);
+          window.location.href = `mailto:${mail}?subject=${subject}&body=${body}`;
+        });
+
+        startCheckout();
+      })();
+    </script>
+
+  </body>
+</html>

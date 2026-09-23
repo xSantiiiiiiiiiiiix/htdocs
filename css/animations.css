@@ -88,3 +88,19 @@
         transform: scale(1);
     }
 }
+
+/* Active nav link */
+.desktop-nav a.active, .mobile-nav a.active { 
+    color: var(--accent, #0084ff);
+    font-weight: 700;
+    position: relative;
+}
+
+/* Panel open animations */
+.cart-panel, .chatbot-panel { transform: translateY(12px); opacity: 0; transition: transform 220ms ease, opacity 220ms ease; }
+.cart-panel.open, .chatbot-panel.open { transform: translateY(0); opacity: 1; }
+
+
+
+/* small focus for chat messages when added */
+.chat-message.new { animation: fadeIn 220ms ease; }

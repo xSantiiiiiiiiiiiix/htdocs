@@ -25,6 +25,10 @@
     <link rel="stylesheet" href="css/floating-elements.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="css/store.css">
 
     <!-- Meta Tags for SEO and Social Media -->
     <meta name="author" content="AMedida3D">
@@ -53,10 +57,34 @@
     <meta name="og:image:alt" content="Logo de AMedida3D">
 
     <title>AMedida3D</title>
+    <style>
+        .form-feedback {
+            margin-top: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: none;
+        }
+        .form-feedback.info { display: block; background: rgba(59,130,246,0.12); color: #bfdbfe; }
+        .form-feedback.success { display: block; background: rgba(34,197,94,0.14); color: #bbf7d0; }
+        .form-feedback.error { display: block; background: rgba(239,68,68,0.16); color: #fecaca; }
+        .producto-card { display: flex; flex-direction: column; gap: 12px; padding: 16px; }
+        .producto-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; }
+        .producto-info h3 { margin-bottom: 8px; }
+        .producto-meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 10px; font-size: 0.95rem; color: #64748b; }
+        .producto-meta .precio { font-weight: 700; color: #111827; }
+    </style>
     <script src="js/script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-client.js" defer></script>
+    <script src="js/auth.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/chatbot.js" defer></script>
+    <script src="js/catalog.js" defer></script>
 </head>
 
-<body class="preloader-active">
+<body class="preloader-active landing-page">
     <div id="preloader">
         <div class="preloader-logo">
             <img src="img/amedida3d_png.png" alt="Logo AMedida3D" />
@@ -66,6 +94,7 @@
     </div>
 
     <header>
+        <div id="auth-controls" class="auth-controls"><button type="button" class="auth-login-button" data-open-auth>Iniciar sesión</button></div>
         <button id="theme-switch">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
@@ -81,10 +110,9 @@
         <p>Vos lo soñás, nosotros lo imprimimos. ✨</p>
         <nav class="desktop-nav">
             <ul>
-                <li><a href="#catalogo">¿Qué hacemos?</a></li>
                 <li><a href="#pedidos">Pedidos Personalizados</a></li>
                 <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-                <li><a href="#galeria">Galería de Proyectos</a></li>
+                <li><a href="catalog.html">Ver catálogo</a></li>
                 <li><a href="#footer">Contacto</a></li>
             </ul>
         </nav>
@@ -92,10 +120,9 @@
 
     <nav class="mobile-nav">
         <ul>
-            <li><a href="#catalogo">¿Qué hacemos?</a></li>
             <li><a href="#pedidos">Pedidos Personalizados</a></li>
             <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-            <li><a href="#galeria">Galería de Proyectos</a></li>
+            <li><a href="catalog.html">Ver catálogo</a></li>
             <li><a href="#footer">Contacto</a></li>
         </ul>
     </nav>
@@ -114,62 +141,49 @@
                 <div class="card">📦 Envíos a todo el país</div>
             </div>
         </section>
-
         <div class="separator"></div>
 
         <section class="pedido-form scroll-reveal" id="pedidos">
-            <form method="POST" action="https://formsubmit.co/amedida3d.ar@gmail.com" enctype="multipart/form-data">
+            <form id="form-pedido">
                 <fieldset>
                     <legend>Pedidos Personalizados</legend>
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://amedida3d.com">
-                
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="Correo" required>      
 
-                <label for="descripcion">Descripción del modelo</label>
-                <textarea id="descripcion" name="descripcion" placeholder="Describe detalladamente las características del modelo que necesitas imprimir..." required></textarea>
+                    <label for="nombre-cliente">Nombre</label>
+                    <input type="text" id="nombre-cliente" name="nombre_cliente" placeholder="Tu nombre o empresa" required>
 
-                <div class="form-row">
-                    <div>
-                        <label for="material">Material</label>
-                        <select id="material" name="material" required>
-                            <option value="" disabled selected>Selecciona un material</option>
-                            <option>PETG - Fuerte</option>
-                            <option>PLA - Común</option>
-                            <option>No sé</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="color">Color </label>
-                        <input type="text" id="color" name="color" required> 
-                    </div>
-                </div>
+                    <label for="email-pedido">Correo electrónico</label>
+                    <input type="email" id="email-pedido" name="email" required>
 
-                <div class="dimensiones-row">
-                    <div>
-                        <label for="ancho">Ancho (mm)</label>
-                        <input type="number" id="ancho" name="ancho" required>
-                    </div>
-                    <div>
-                        <label for="alto">Alto (mm)</label>
-                        <input type="number" id="alto" name="alto" required>
-                    </div>
-                    <div>
-                        <label for="profundidad">Profundidad (mm)</label>
-                        <input type="number" id="profundidad" name="profundidad" required>
-                    </div>
-                </div>
+                    <label for="telefono-pedido">Teléfono (opcional)</label>
+                    <input type="tel" id="telefono-pedido" name="telefono" placeholder="Ej: 343 415-0181">
 
-                <div class="file-upload">
-                    <label for="archivo" class="file-label">
-                        <span>Subir archivo (opcional)</span>
-                    </label>
-                    <input type="file" id="archivo" name="archivo" accept=".stl,.obj,.3mf,.step,.iges,.blend,.png,.jpg,.jpeg">
-                    <span class="file-name" id="file-name">Ningún archivo seleccionado</span>
-                </div>
+                    <label for="descripcion-pedido">Descripción del pedido</label>
+                    <textarea id="descripcion-pedido" name="descripcion_pedido" placeholder="Contanos qué necesitás imprimir, material, medidas, colores o referencias..." required></textarea>
 
-                <button type="submit"><span>Enviar pedido</span></button>
+                    <button type="submit"><span>Enviar pedido</span></button>
+                    <div id="form-feedback" class="form-feedback" role="status" aria-live="polite"></div>
+                </fieldset>
+            </form>
+        </section>
+
+        <div class="separator"></div>
+
+        <section class="pedido-form scroll-reveal" aria-label="Cotización rápida">
+        <form id="form-cotizacion" action="https://formsubmit.co/galvanlaureano39@gmail.com" method="POST"> 
+            <input type="hidden" name="_captcha" value="false">                <fieldset>
+                    <legend>Cotización rápida</legend>
+
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="titulo">Proyecto / Pieza</label>
+                    <input type="text" id="titulo" name="titulo" required>
+
+                    <button type="submit">Enviar cotización</button>
+                    <div id="form-feedback-cotizacion" class="form-feedback" role="status" aria-live="polite"></div>
                 </fieldset>
             </form>
         </section>
@@ -184,35 +198,11 @@
 
         <div class="separator"></div>
 
-        <section id="galeria">
-            <h2>Galería de Proyectos</h2>
-            <div class="galeria-container">
-                <div class="galeria-card">
-                    <img src="img/Soporte de auriculares Kratos.jpg" alt="Soporte de auriculares Kratos">
-                    <p>Soporte de auriculares Kratos</p>
-                </div>
-                <div class="galeria-card">
-                    <img src="img/Soporte de Celular.jpg" alt="Soportes de celular">
-                    <p>Soportes de celular</p>
-                </div>
-                <div class="galeria-card">
-                    <img src="img/SOPORTE DE MANDO.png" alt="SOPORTE DE MANDO">
-                    <p>Prototipos SOPORTE DE MANDO</p>
-                </div>
-                <div class="galeria-card">
-                    <img src="img/piezas_f.jpeg" alt="Piezas funcionales">
-                    <p>Piezas funcionales</p>
-                </div>
-            </div>
+        <section id="catalogo-destacado">
+            <h2>Todos los productos en un solo lugar</h2>
+            <p>Los modelos que antes veías en la galería ahora aparecen directamente en el catálogo para que puedas buscarlos, comparar precios y agregarlos al carrito con facilidad.</p>
+            <p><a href="catalog.html" class="button-link">Ir al catálogo</a></p>
         </section>
-        
-        <div id="modal" class="modal">
-            <span class="close">&times;</span>
-            <img class="modal-content" id="modal-img">
-            <div id="modal-caption"></div>
-            <button class="prev">&#10094;</button>
-            <button class="next">&#10095;</button>
-        </div>
         
     <footer id="footer">
         <p>Contacto: amedida3d.ar@gmail.com | Tel: (343) 415-0181</p>
@@ -222,19 +212,67 @@
     </footer>
 
     <div class="floating-buttons">
-        
         <a href="https://instagram.com/amedida.3d" class="social-float instagram" target="_blank" aria-label="Instagram">
             <svg viewBox="0 0 24 24" class="social-icon">
-                <path fill="white" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5.2A4.8 4.8 0 1 0 16.8 12 4.8 4.8 0 0 0 12 7.2Zm6.3-1.7a1.2 1.2 0 1 0 1.2 1.2 1.2 1.2 0 0 0-1.2-1.2Z"/>
             </svg>
         </a>
         <a href="https://wa.me/5493434150181" class="social-float whatsapp" target="_blank" aria-label="WhatsApp">
             <svg viewBox="0 0 24 24" class="social-icon">
-                <path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                <path d="M19.1 4.9A9.6 9.6 0 0 0 4.9 19.1L3 21l1.9-1.9a9.6 9.6 0 0 0 14.2-14.2Zm-5.2 13.4h-.1a8 8 0 0 1-4.1-1.1l-.3-.2-1.2.3.3-1.2-.2-.3a8 8 0 1 1 5.6 2.5Zm4.4-6.1c-.2-.1-1.2-.6-1.4-.7s-.3-.1-.4.1-.5.7-.6.8-.2.2-.4.1a6.4 6.4 0 0 1-3.2-2.8c-.2-.3 0-.4.1-.5l.4-.4c.1-.1.1-.2.2-.3.1-.1.1-.2 0-.3l-.5-1.2a.4.4 0 0 0-.6-.2c-.1 0-.2.1-.3.2l-.4.5a1.2 1.2 0 0 0-.2.5 2 2 0 0 0 .5 1.7 8.6 8.6 0 0 0 4.2 4.2 2 2 0 0 0 1.7.5 1.2 1.2 0 0 0 .5-.2c.2-.2.3-.3.3-.5l.1-.4c0-.2 0-.3-.2-.4l-1.1-.6a.2.2 0 0 0-.2 0Z"/>
             </svg>
         </a>
     </div>
-    
+    <div class="quick-action-stack">
+        <a href="catalog.html" class="quick-action catalog-action" aria-label="Ver catálogo">
+            <svg viewBox="0 0 24 24" class="quick-icon">
+                <path d="M4 5h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 0h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1ZM4 14h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1Zm9 0h6a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1Z"/>
+            </svg>
+        </a>
+        <button id="cart-button" class="quick-action cart-action" aria-label="Abrir carrito" type="button">
+            <svg viewBox="0 0 24 24" class="quick-icon">
+                <path d="M3 4h2l2.2 8.2a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L17 7H7"/>
+                <circle cx="10" cy="19" r="1.7"/>
+                <circle cx="17" cy="19" r="1.7"/>
+            </svg>
+            <span id="cart-count" class="badge">0</span>
+        </button>
+        <button id="chatbot-button" class="quick-action chat-action" aria-label="Abrir asistente" type="button">
+            <svg viewBox="0 0 24 24" class="quick-icon">
+                <path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8l-4 3v-3H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/>
+            </svg>
+        </button>
+    </div>
+<!-- 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="main.js"></script>
+    <script src="app.js"></script>
+-->  
+    <!-- Cart panel -->
+    <div id="cart-panel" class="cart-panel" aria-hidden="true">
+        <header>
+            <h3>Carrito</h3>
+            <button id="close-cart" aria-label="Cerrar carrito">✕</button>
+        </header>
+        <div id="cart-items" class="cart-items"></div>
+        <footer>
+            <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+            <button id="checkout">Checkout</button>
+        </footer>
+    </div>
+
+    <!-- Chatbot panel -->
+    <div id="chatbot-panel" class="chatbot-panel" aria-hidden="true">
+        <header>
+            <h3>Asistente</h3>
+            <button id="close-chat" aria-label="Cerrar chat">✕</button>
+        </header>
+        <div id="chat-messages" class="chat-messages"></div>
+        <form id="chat-form" class="chat-form">
+            <input type="text" id="chat-input" placeholder="Escribe tu consulta..." autocomplete="off" required />
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
 </body>
 </html>
-

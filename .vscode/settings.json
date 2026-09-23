@@ -1,6 +1,6 @@
 {
     "workbench.preferredHighContrastColorTheme": "Cursor Dark",
-    "workbench.preferredHighContrastLightColorTheme": "Default Dark+",
+    "workbench.preferredHighContrastLightColorTheme": "Dark+",
     "workbench.colorTheme": "Default High Contrast",
     "window.autoDetectColorScheme": true
 }

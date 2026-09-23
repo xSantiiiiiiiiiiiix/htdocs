@@ -1,0 +1,247 @@
+/* === NUEVO HEADER + HERO - Versión compacta === */
+header {
+    background-color: #0a0a0a;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: white;
+}
+
+header .logo img {
+    height: 48px;
+    width: auto;
+}
+
+header .logo span {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: white;
+}
+
+header nav.desktop-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav.desktop-nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+header nav.desktop-nav a:hover {
+    color: #f97316; /* naranja que usabas */
+}
+
+/* Hero compacto */
+.hero {
+    background-color: #111;
+    padding: 60px 20px 50px;
+    text-align: center;
+    border-bottom: 1px solid #222;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.hero h1 span {
+    color: #f97316;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: #aaa;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-buttons a {
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.hero-buttons .btn-primary {
+    background-color: #f97316;
+    color: white;
+}
+
+.hero-buttons .btn-primary:hover {
+    background-color: #fb923c;
+    transform: translateY(-2px);
+}
+
+.hero-buttons .btn-secondary {
+    border: 2px solid #444;
+    color: white;
+}
+
+.hero-buttons .btn-secondary:hover {
+    border-color: #f97316;
+    color: #f97316;
+}
+
+/* === SECCIÓN CATÁLOGO === */
+#catalogo {
+    background-color: #0a0a0a;
+    padding: 80px 20px;
+}
+
+#catalogo h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.catalogo-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background-color: #111;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #222;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+}
+
+.product-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: contain;
+    background-color: #1a1a1a;
+    padding: 20px;
+    transition: transform 0.4s;
+}
+
+.product-card:hover img {
+    transform: scale(1.08);
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    color: white;
+    font-size: 1.35rem;
+    margin-bottom: 8px;
+}
+
+.product-info .price {
+    color: #f97316;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.product-card button {
+    width: 100%;
+    padding: 14px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.product-card button:hover {
+    background-color: #f97316;
+    color: white;
+}
+
+/* === GALERÍA === */
+#galeria {
+    background-color: #111;
+    padding: 80px 20px;
+}
+
+#galeria h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.galeria-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.galeria-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    transition: transform 0.3s;
+    cursor: pointer;
+    border: 1px solid #222;
+}
+
+.galeria-card:hover {
+    transform: scale(1.04);
+}
+
+.galeria-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.galeria-card p {
+    padding: 16px;
+    color: #ddd;
+    font-weight: 500;
+    text-align: center;
+    background-color: #111;
+}

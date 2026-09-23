@@ -41,3 +41,36 @@ header p {
     animation: animateGradient 12s ease infinite;
     color: white;
 }
+
+/* Theme switch styles (from original) */
+#theme-switch {
+    height: 60px;
+    width: 60px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+#theme-switch:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ensure header text color toggles in dark mode */
+.dark header { color: var(--text-color); }
+
+/* small reset */
+* { box-sizing: border-box; }
+
+html, body { font-family: 'Segoe UI', sans-serif; color: var(--text-color); }
