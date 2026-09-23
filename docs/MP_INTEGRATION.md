@@ -34,6 +34,3 @@ Frontend expectations
 Security notes
 - Keep your `MP_ACCESS_TOKEN` secret (server env var). Do not expose it in frontend code.
 - Validate item prices and IDs server-side if you rely on pricing or inventory.
-
-Support
-- If you'd like, I can scaffold a minimal Node/Express endpoint in this repo and a README showing deployment to Heroku/Vercel. Ask and I'll add it.
